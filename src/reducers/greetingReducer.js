@@ -1,7 +1,4 @@
-/**
- * Created by jukka on 04/05/2017.
- */
-const greetingReducer = (state = {greeting: "Car diary"}, action) => {
+const greetingReducer = (state = {greeting: "World"}, action) => {
     switch (action.type) {
         case "SET_GREETING":
             state = {

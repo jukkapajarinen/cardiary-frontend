@@ -1,13 +1,13 @@
-# CarDiary-frontend
+# Cardiary-frontend
 
-This is responsive ReactJS-app for optimizing car driving expenses.  
+This is a React/Redux app for optimizing car driving expenses.  
 Project is open-sourced and made in collaboration with @Kazooiebombchu.
 
-## Tech used:
+## Built with:
 
-* reactjs
+* react
 * redux
+* redux-router
 * jwt authentication
-* bootswatch-paper
 * reactstrap
-* ...
+* bootswatch-paper

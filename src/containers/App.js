@@ -1,25 +1,46 @@
-/**
- * Created by jukka on 04/05/2017.
- */
-import React, { Component } from 'react';
+import React, { Component } from "react";
 import { connect } from "react-redux";
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 
-import { Main } from "../components/Main";
+import { Navigation } from "../components/Navigation";
+import { About } from "../components/About";
+import { NotFound } from "../components/NotFound";
+import Main from "./Main";
+import Login from "./Login";
 
 class App extends Component {
+
+    constructor(props) {
+        console.log("App constructor");
+        super(props);
+    }
+
+    componentWillMount() {
+        console.log("App componentWillMount");
+        let authenticated = true; // authenticate user..
+        this.state = {loggedIn: authenticated};
+    }
+
     render() {
+        console.log("App render");
+        console.log(this.state);
         return (
-            <div>
-                <Main hello={this.props.greeting}/>
-            </div>
+            <BrowserRouter>
+                <div>
+                    <Navigation/>
+                    <Switch>
+                        <Route exact path="/" render={() => this.state.loggedIn ? <Main/> : <Login/>}/>
+                        <Route path="/about" render={() => this.state.loggedIn ? <About/> : <Login/>}/>
+                        <Route render={() => <NotFound/>}/>
+                    </Switch>
+                </div>
+            </BrowserRouter>
         );
     }
 }
 
 const mapStateToProps = (state) => {
-    return {
-        greeting: state.greetings.greeting
-    };
+    return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
