@@ -13,8 +13,10 @@
   "homepage": "https://bitbucket.org/jukkapajarinen/cardiary-frontend",
   "license": "MIT",
   "dependencies": {
+    "bootstrap": "^4.0.0-alpha.6",
     "prop-types": "^15.5.8",
     "react": "^15.5.4",
+    "react-bootstrap": "^0.31.0",
     "react-dom": "^15.5.4",
     "react-redux": "^5.0.4",
     "react-router": "^4.1.1",

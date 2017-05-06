@@ -27,7 +27,7 @@ class App extends Component {
         return (
             <BrowserRouter>
                 <div>
-                    <Navigation/>
+                    {this.state.loggedIn ? <Navigation/> : <span/>}
                     <Switch>
                         <Route exact path="/" render={() => this.state.loggedIn ? <Main/> : <Login/>}/>
                         <Route path="/about" render={() => this.state.loggedIn ? <About/> : <Login/>}/>

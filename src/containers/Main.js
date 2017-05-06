@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Grid, Row, Col, PageHeader } from "react-bootstrap";
 
 class Main extends Component  {
 
@@ -11,9 +12,16 @@ class Main extends Component  {
     render() {
         console.log("Main render");
         return (
-            <div>
-                <h1>Hello {this.props.greeting}</h1>
-            </div>
+            <Grid>
+                <Row>
+                    <Col xs={12}>
+                        <PageHeader>Main page</PageHeader>
+                    </Col>
+                    <Col xs={12}>
+                        <p>Hello {this.props.greeting}</p>
+                    </Col>
+                </Row>
+            </Grid>
         );
     }
 }

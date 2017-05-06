@@ -9,5 +9,5 @@ Project is open-sourced and made in collaboration with @Kazooiebombchu.
 * redux
 * redux-router
 * jwt authentication
-* reactstrap
+* react-bootstrap
 * bootswatch-paper
