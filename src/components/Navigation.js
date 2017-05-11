@@ -1,22 +1,25 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
-import { Navbar, Header, Brand, Toggle, Collapse, Nav } from "react-bootstrap";
+import {NavLink} from "react-router-dom";
+import {Navbar, Header, Brand, Toggle, Collapse, Nav} from "react-bootstrap";
 
-export const Navigation = (props) =>  {
-    return (
-        <Navbar inverse>
-            <Navbar.Header>
-                <Navbar.Brand>
-                    <NavLink to="/">App</NavLink>
-                </Navbar.Brand>
-                <Navbar.Toggle/>
-            </Navbar.Header>
-            <Navbar.Collapse>
-                <Nav>
-                    <li role="presentation"><NavLink to="/">Home</NavLink></li>
-                    <li role="presentation"><NavLink to="/about">About</NavLink></li>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-    );
+export const Navigation = (props) => {
+  return (
+    <Navbar inverse collapseOnSelect>
+      <Navbar.Header>
+        <Navbar.Brand>
+          <NavLink to="/">Cardiary</NavLink>
+        </Navbar.Brand>
+        <Navbar.Toggle/>
+      </Navbar.Header>
+      <Navbar.Collapse>
+        <Nav>
+          <li role="presentation"><NavLink to="/">Home</NavLink></li>
+          <li role="presentation"><NavLink to="/refuels">Refuels</NavLink></li>
+          <li role="presentation"><NavLink to="/addrefuel">Add Refuel</NavLink></li>
+          <li role="presentation"><NavLink to="/about">About</NavLink></li>
+          <li role="presentation"><NavLink to="/settings">Settings</NavLink></li>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
+  );
 }

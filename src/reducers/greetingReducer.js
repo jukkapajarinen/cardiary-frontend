@@ -1,4 +1,4 @@
-const greetingReducer = (state = {greeting: "World"}, action) => {
+const greetingReducer = (state = {greeting: "Hello World"}, action) => {
     switch (action.type) {
         case "SET_GREETING":
             state = {

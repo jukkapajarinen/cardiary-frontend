@@ -11,3 +11,4 @@ Project is open-sourced and made in collaboration with @Kazooiebombchu.
 * jwt authentication
 * react-bootstrap
 * bootswatch-paper
+* C3 Charts
