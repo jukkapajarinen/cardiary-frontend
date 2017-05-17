@@ -1,11 +1,11 @@
-import React from "react";
-import {Grid, Row, Col, Accordion, Panel} from "react-bootstrap";
+import React from 'react';
+import {Grid, Row, Col, Accordion, Panel} from 'react-bootstrap';
 
-export const About = (props) => {
+export const About = () => {
   return (
     <Grid>
       <Row>
-        <Col xs={12}>
+        <Col xs={ 12 }>
           <Accordion>
             <Panel header="Home" eventKey="1">
               <p>This view shows overall statistics of your driving expenses</p>
@@ -27,4 +27,4 @@ export const About = (props) => {
       </Row>
     </Grid>
   );
-}
+};

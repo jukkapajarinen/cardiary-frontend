@@ -9,7 +9,7 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "author": "Jukka Pajarinen",
+  "author": "Jukka Pajarinen & Mauri Mustonen",
   "homepage": "https://bitbucket.org/jukkapajarinen/cardiary-frontend",
   "license": "MIT",
   "dependencies": {
@@ -26,6 +26,8 @@
     "redux-logger": "^3.0.1"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-plugin-react": "^7.0.1",
     "react-scripts": "0.9.5"
   }
 }

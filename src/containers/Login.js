@@ -1,21 +1,21 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {Grid, Row, Col, Panel} from "react-bootstrap";
-import {Form, FormGroup, InputGroup, Addon, Glyphicon, FormControl, Button} from "react-bootstrap";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Grid, Row, Col, Panel} from 'react-bootstrap';
+import {Form, FormGroup, InputGroup, Glyphicon, FormControl, Button} from 'react-bootstrap';
 
 class Login extends Component {
   constructor(props) {
-    console.log("Login constructor");
+    console.log('Login constructor');
     super(props);
   }
 
   render() {
-    console.log("Login render");
+    console.log('Login render');
     return (
       <Grid>
         <Row>
-          <Col xs={12}>
-            <Panel header="Cardiary" bsStyle="primary" style={{marginTop: 60}}>
+          <Col xs={ 12 }>
+            <Panel header="Cardiary" bsStyle="primary" style={ {marginTop: 60} }>
               <Form>
                 <FormGroup>
                   <InputGroup>
@@ -39,11 +39,11 @@ class Login extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {};
 };
 

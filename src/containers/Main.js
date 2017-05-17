@@ -1,8 +1,9 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {Grid, Row, Col, Panel} from "react-bootstrap";
-import {ListGroup, ListGroupItem, Badge} from "react-bootstrap";
-import {C3Chart} from "./C3Chart";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Grid, Row, Col, Panel} from 'react-bootstrap';
+import {ListGroup, ListGroupItem, Badge} from 'react-bootstrap';
+import {C3Chart} from './C3Chart';
+import PropTypes from 'prop-types';
 
 const chartColumnsData = [
   ['data1', 30, 200, 100, 400, 150, 250],
@@ -11,18 +12,18 @@ const chartColumnsData = [
 
 class Main extends Component {
   constructor(props) {
-    console.log("Main constructor");
+    console.log('Main constructor');
     super(props);
   }
 
   render() {
-    console.log("Main render");
+    console.log('Main render');
     return (
       <Grid>
         <Row>
-          <Col sm={6}>
+          <Col sm={ 6 }>
             <Panel header="Statistics">
-              <ListGroup style={{margin: "-16px"}}>
+              <ListGroup style={ {margin: '-16px'} }>
                 <ListGroupItem>Total Refills <Badge>4</Badge></ListGroupItem>
                 <ListGroupItem>Total Mileage <Badge>200 133</Badge></ListGroupItem>
                 <ListGroupItem>Total Fuel <Badge>1 400</Badge></ListGroupItem>
@@ -30,9 +31,9 @@ class Main extends Component {
               </ListGroup>
             </Panel>
           </Col>
-          <Col sm={6}>
-            <Panel header={this.props.greeting}>
-              <C3Chart columns={chartColumnsData} type="donut"/>
+          <Col sm={ 6 }>
+            <Panel header={ this.props.greeting }>
+              <C3Chart columns={ chartColumnsData } type="donut"/>
             </Panel>
           </Col>
         </Row>
@@ -47,8 +48,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {};
+};
+
+Main.propTypes = {
+  greeting: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

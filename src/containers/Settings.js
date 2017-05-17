@@ -1,35 +1,35 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
-import {Grid, Row, Col, Panel} from "react-bootstrap";
-import {Form, FormGroup, ControlLabel, FormControl, Button} from "react-bootstrap";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Grid, Row, Col, Panel} from 'react-bootstrap';
+import {Form, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
 const carsData = [
-  {id: 1, name: "Toyota Celica"},
-  {id: 2, name: "Nissan Primera"},
-  {id: 3, name: "Bugatti Veyron"},
-  {id: 4, name: "Lamborghini Gallardo"},
-  {id: 5, name: "Lada Samara"}
+  {id: 1, name: 'Toyota Celica'},
+  {id: 2, name: 'Nissan Primera'},
+  {id: 3, name: 'Bugatti Veyron'},
+  {id: 4, name: 'Lamborghini Gallardo'},
+  {id: 5, name: 'Lada Samara'}
 ];
 
 class Settings extends Component {
   constructor(props) {
-    console.log("Settings constructor");
+    console.log('Settings constructor');
     super(props);
   }
 
   render() {
-    console.log("Settings render");
+    console.log('Settings render');
     return (
       <Grid>
         <Row>
-          <Col sm={12}>
+          <Col sm={ 12 }>
             <Panel header="General settings">
               <Form>
                 <FormGroup>
                   <ControlLabel>Default car</ControlLabel>
                   <FormControl componentClass="select" placeholder="Default car">
-                    {carsData.map(car => (
-                      <option value={car.id}>{car.name}</option>
+                    {carsData.map((car, i) => (
+                      <option key={ i } value={ car.id }>{ car.name }</option>
                     ))}
                   </FormControl>
                 </FormGroup>
@@ -59,11 +59,11 @@ class Settings extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {};
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = () => {
   return {};
 };
 
