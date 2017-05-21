@@ -1,10 +1,11 @@
 import { createStore, combineReducers, applyMiddleware } from 'redux';
 import { createLogger } from 'redux-logger';
+import thunk from "redux-thunk";
 
-import greetingReducer from './reducers/greetingReducer';
+import login from './reducers/LoginReducer';
 
 export default createStore(
-    combineReducers({greetings: greetingReducer}),
+    combineReducers({login}),
     {},
-    applyMiddleware(createLogger())
+    applyMiddleware(createLogger(), thunk)
 );

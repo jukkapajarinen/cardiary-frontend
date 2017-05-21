@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {BrowserRouter, Switch, Route} from 'react-router-dom';
-
 import {Navigation} from '../components/Navigation';
 import {About} from '../components/About';
 import {NotFound} from '../components/NotFound';
 import Main from './Main';
-import Login from './Login';
+import Login from '../components/Login';
 import Settings from './Settings';
 import Refuels from './Refuels';
 import Addrefuel from './Addrefuel';
+import auth from '../auth';
 
 class App extends Component {
   constructor(props) {
     console.log('App constructor');
     super(props);
+    this.state = {loggedIn: auth.loggedIn()};
   }
 
   componentWillMount() {
-    console.log('App componentWillMount');
-    let authenticated = true; // authenticate user..
-    this.state = {loggedIn: authenticated};
+    console.log("App Component will mount");
+    this.setState({loggedIn: auth.loggedIn()});
   }
 
   render() {

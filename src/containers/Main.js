@@ -2,8 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {ListGroup, ListGroupItem, Badge} from 'react-bootstrap';
-import {C3Chart} from './C3Chart';
-import PropTypes from 'prop-types';
+import {C3Chart} from '../components/C3Chart';
 
 const chartColumnsData = [
   ['data1', 30, 200, 100, 400, 150, 250],
@@ -32,7 +31,7 @@ class Main extends Component {
             </Panel>
           </Col>
           <Col sm={ 6 }>
-            <Panel header={ this.props.greeting }>
+            <Panel header="Graph">
               <C3Chart columns={ chartColumnsData } type="donut"/>
             </Panel>
           </Col>
@@ -43,17 +42,11 @@ class Main extends Component {
 }
 
 const mapStateToProps = (state) => {
-  return {
-    greeting: state.greetings.greeting
-  };
+  return {};
 };
 
 const mapDispatchToProps = () => {
   return {};
-};
-
-Main.propTypes = {
-  greeting: PropTypes.string.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);

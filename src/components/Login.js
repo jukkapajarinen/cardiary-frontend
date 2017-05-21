@@ -1,12 +1,30 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {Form, FormGroup, InputGroup, Glyphicon, FormControl, Button} from 'react-bootstrap';
+import auth from "../auth";
 
-class Login extends Component {
+export default class Login extends Component {
   constructor(props) {
     console.log('Login constructor');
     super(props);
+    this.state = {
+      username: "",
+      password: ""
+    };
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state);
+    auth.login(this.state.username, this.state.password);
+  }
+
+  handleOnChange(e) {
+    let next = this.state;
+    next[e.target.name] = e.target.value;
+    this.setState(next);
   }
 
   render() {
@@ -20,16 +38,16 @@ class Login extends Component {
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon><Glyphicon glyph="user"/></InputGroup.Addon>
-                    <FormControl type="text" placeholder="Username"/>
+                    <FormControl onChange={this.handleOnChange} type="text" name="username" placeholder="Username"/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon><Glyphicon glyph="lock"/></InputGroup.Addon>
-                    <FormControl type="password" placeholder="Password"/>
+                    <FormControl onChange={this.handleOnChange} type="password" name="password" placeholder="Password"/>
                   </InputGroup>
                 </FormGroup>
-                <Button type="submit" bsStyle="default" block>Login</Button>
+                <Button onClick={this.handleSubmit} type="submit" bsStyle="default" block>Login</Button>
               </Form>
             </Panel>
           </Col>
@@ -38,13 +56,3 @@ class Login extends Component {
     );
   }
 }
-
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = () => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
