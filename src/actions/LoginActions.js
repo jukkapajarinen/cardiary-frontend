@@ -1,17 +1,18 @@
-export login = (username, password, loggedIn) => {
+export function login(username, password) {
   return {
-    type: "LOGIN",
+    type: 'LOGIN',
     payload: {
-      "username": username,
-      "password": password,
-      "loggedIn": loggedIn
+      'username': username,
+      'password': password
     }
-  }
-};
+  };
+}
 
-export logout = (username) => {
+export function logout(username) {
   return {
-    type: "LOGOUT",
-    payload: {"username": username}
-  }
-};
+    type: 'LOGOUT',
+    payload: {
+      'username': username
+    }
+  };
+}

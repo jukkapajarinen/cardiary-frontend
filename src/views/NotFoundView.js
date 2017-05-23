@@ -2,7 +2,7 @@ import React from 'react';
 import {Grid, Row, Col} from 'react-bootstrap';
 import {Alert} from 'react-bootstrap';
 
-export const NotFound = () => {
+const NotFoundView = () => {
   return (
     <Grid>
       <Row>
@@ -15,3 +15,5 @@ export const NotFound = () => {
     </Grid>
   );
 };
+
+export default NotFoundView;

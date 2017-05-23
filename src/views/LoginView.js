@@ -1,15 +1,15 @@
 import React, {Component} from 'react';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {Form, FormGroup, InputGroup, Glyphicon, FormControl, Button} from 'react-bootstrap';
-import auth from "../auth";
+import auth from '../auth';
 
-export default class Login extends Component {
+export default class LoginView extends Component {
   constructor(props) {
     console.log('Login constructor');
     super(props);
     this.state = {
-      username: "",
-      password: ""
+      username: '',
+      password: ''
     };
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
@@ -38,16 +38,16 @@ export default class Login extends Component {
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon><Glyphicon glyph="user"/></InputGroup.Addon>
-                    <FormControl onChange={this.handleOnChange} type="text" name="username" placeholder="Username"/>
+                    <FormControl onChange={ this.handleOnChange } type="text" name="username" placeholder="Username"/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon><Glyphicon glyph="lock"/></InputGroup.Addon>
-                    <FormControl onChange={this.handleOnChange} type="password" name="password" placeholder="Password"/>
+                    <FormControl onChange={ this.handleOnChange } type="password" name="password" placeholder="Password"/>
                   </InputGroup>
                 </FormGroup>
-                <Button onClick={this.handleSubmit} type="submit" bsStyle="default" block>Login</Button>
+                <Button onClick={ this.handleSubmit } type="submit" bsStyle="default" block>Login</Button>
               </Form>
             </Panel>
           </Col>

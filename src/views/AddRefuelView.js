@@ -11,7 +11,7 @@ const carsData = [
   {id: 5, name: 'Lada Samara'}
 ];
 
-class Addrefuel extends Component {
+class AddRefuelView extends Component {
   constructor(props) {
     console.log('Addrefuel constructor');
     super(props);
@@ -82,4 +82,4 @@ const mapDispatchToProps = () => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Addrefuel);
+export default connect(mapStateToProps, mapDispatchToProps)(AddRefuelView);

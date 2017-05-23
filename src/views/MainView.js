@@ -9,7 +9,7 @@ const chartColumnsData = [
   ['data2', 50, 20, 10, 40, 15, 25]
 ];
 
-class Main extends Component {
+class MainView extends Component {
   constructor(props) {
     console.log('Main constructor');
     super(props);
@@ -41,7 +41,7 @@ class Main extends Component {
   }
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
   return {};
 };
 
@@ -49,4 +49,4 @@ const mapDispatchToProps = () => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Main);
+export default connect(mapStateToProps, mapDispatchToProps)(MainView);

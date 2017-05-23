@@ -1,7 +1,7 @@
 import React from 'react';
 import {Grid, Row, Col, Accordion, Panel} from 'react-bootstrap';
 
-export const About = () => {
+const AboutView = () => {
   return (
     <Grid>
       <Row>
@@ -28,3 +28,5 @@ export const About = () => {
     </Grid>
   );
 };
+
+export default AboutView;

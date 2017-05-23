@@ -11,7 +11,7 @@ const carsData = [
   {id: 5, name: 'Lada Samara'}
 ];
 
-class Settings extends Component {
+class SettingsView extends Component {
   constructor(props) {
     console.log('Settings constructor');
     super(props);
@@ -67,4 +67,4 @@ const mapDispatchToProps = () => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Settings);
+export default connect(mapStateToProps, mapDispatchToProps)(SettingsView);

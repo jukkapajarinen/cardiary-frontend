@@ -13,7 +13,7 @@ const refuelsData = [
 ];
 const refuelsDataPages = 10;
 
-class Refuels extends Component {
+class RefuelsView extends Component {
   constructor(props) {
     console.log('Refuels constructor');
     super(props);
@@ -67,4 +67,4 @@ const mapDispatchToProps = () => {
   return {};
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Refuels);
+export default connect(mapStateToProps, mapDispatchToProps)(RefuelsView);
