@@ -1,27 +1,22 @@
-const initialState = {username: '', password: '', loggedIn: false};
+const initialState = {username: '', loggedIn: false};
 
 const LoginReducer = (state = initialState, action) => {
   switch (action.type) {
   case 'LOGIN':
-    state = {
+    return {
       ...state,
       username: action.payload.username,
-      password: action.payload.password,
       loggedIn: true
     };
-    break;
   case 'LOGOUT':
-    state = {
+    return {
       ...state,
       username: '',
-      password: '',
       loggedIn: false
     };
-    break;
   default:
-    break;
+    return state;
   }
-  return state;
 };
 
 export default LoginReducer;

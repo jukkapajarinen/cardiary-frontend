@@ -2,7 +2,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 import {Navbar, Nav} from 'react-bootstrap';
 
-export const Navigation = () => {
+const Navigation = () => {
   return (
     <Navbar inverse collapseOnSelect>
       <Navbar.Header>
@@ -23,3 +23,5 @@ export const Navigation = () => {
     </Navbar>
   );
 };
+
+export default Navigation;

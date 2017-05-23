@@ -17,7 +17,6 @@ export default class LoginView extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state);
     auth.login(this.state.username, this.state.password);
   }
 
