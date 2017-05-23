@@ -5,7 +5,7 @@ import auth from '../auth';
 
 export default class LoginView extends Component {
   constructor(props) {
-    console.log('Login constructor');
+    console.log('Login::constructor');
     super(props);
     this.state = {
       username: '',
@@ -28,7 +28,7 @@ export default class LoginView extends Component {
   }
 
   render() {
-    console.log('Login render');
+    console.log('LoginView::render');
     return (
       <Grid>
         <Row>

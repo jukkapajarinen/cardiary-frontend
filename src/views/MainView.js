@@ -11,12 +11,12 @@ const chartColumnsData = [
 
 class MainView extends Component {
   constructor(props) {
-    console.log('Main constructor');
+    console.log('MainView::constructor');
     super(props);
   }
 
   render() {
-    console.log('Main render');
+    console.log('MainView::render');
     return (
       <Grid>
         <Row>

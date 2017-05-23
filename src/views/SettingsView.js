@@ -13,12 +13,12 @@ const carsData = [
 
 class SettingsView extends Component {
   constructor(props) {
-    console.log('Settings constructor');
+    console.log('SettingsView::constructor');
     super(props);
   }
 
   render() {
-    console.log('Settings render');
+    console.log('SettingsView::render');
     return (
       <Grid>
         <Row>

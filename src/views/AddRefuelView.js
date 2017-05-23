@@ -13,12 +13,12 @@ const carsData = [
 
 class AddRefuelView extends Component {
   constructor(props) {
-    console.log('Addrefuel constructor');
+    console.log('AddRefuelView::constructor');
     super(props);
   }
 
   render() {
-    console.log('Addrefuel render');
+    console.log('AddRefuelView::render');
     return (
       <Grid>
         <Row>

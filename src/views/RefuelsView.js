@@ -15,7 +15,7 @@ const refuelsDataPages = 10;
 
 class RefuelsView extends Component {
   constructor(props) {
-    console.log('Refuels constructor');
+    console.log('RefuelsView::constructor');
     super(props);
   }
 
@@ -24,7 +24,7 @@ class RefuelsView extends Component {
   }
 
   render() {
-    console.log('Refuels render');
+    console.log('RefuelsView::render');
     return (
       <Grid>
         <Row>
