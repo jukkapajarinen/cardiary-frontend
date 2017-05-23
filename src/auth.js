@@ -1,21 +1,35 @@
-//import axios from "axios";
-import {login as loginAction, logout as logoutAction} from './actions/LoginActions';
+import axios from './axios_config';
 
 class Auth {
-  login(username, password) {
-    console.log('Auth::login');
-    let authenticateMeWithJwt = true;
-    if(authenticateMeWithJwt) {
-      console.log('Credentials OK');
-      dispatch(loginAction(username));
-    }
+  login() {
+    console.log('Auth.login() called');
+
+    axios.post('/api-token-auth/', {
+      username: 'admin',
+      password: 'admin'
+    })
+    .then(response => {
+      let token = response.data.token;
+      console.log(token);
+      localStorage.setItem('jwt_token', token);
+      axios.get('/my-cars/', {
+      }).then(response => {
+        console.log(response.data);
+      })
+      .catch(response => {
+        console.log(response);
+        localStorage.removeItem('jwt_token');
+      });
+    })
+    .catch(function (error) {
+      console.log(error);
+      localStorage.removeItem('jwt_token');
+    });
   }
 
   logout() {
-    console.log('Auth::logout');
-    if(this.loggedIn) {
-      dispatch(logoutAction(''));
-    }
+    console.log('Auth.logout() called');
+    localStorage.removeItem('jwt_token');
   }
 
   loggedIn() {
