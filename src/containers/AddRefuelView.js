@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {Form, FormGroup, FormControl, Button} from 'react-bootstrap';
 
@@ -11,12 +10,7 @@ const carsData = [
   {id: 5, name: 'Lada Samara'}
 ];
 
-class AddRefuelView extends Component {
-  constructor(props) {
-    console.log('AddRefuelView::constructor');
-    super(props);
-  }
-
+export default class AddRefuelView extends Component {
   render() {
     console.log('AddRefuelView::render');
     return (
@@ -73,13 +67,3 @@ class AddRefuelView extends Component {
     );
   }
 }
-
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = () => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(AddRefuelView);

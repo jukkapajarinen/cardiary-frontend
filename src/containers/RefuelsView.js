@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Grid, Row, Col} from 'react-bootstrap';
 import {Table, Pagination} from 'react-bootstrap';
 
@@ -13,12 +12,7 @@ const refuelsData = [
 ];
 const refuelsDataPages = 10;
 
-class RefuelsView extends Component {
-  constructor(props) {
-    console.log('RefuelsView::constructor');
-    super(props);
-  }
-
+export default class RefuelsView extends Component {
   handlePagination(eventKey) {
     console.log(eventKey);
   }
@@ -58,13 +52,3 @@ class RefuelsView extends Component {
     );
   }
 }
-
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = () => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(RefuelsView);

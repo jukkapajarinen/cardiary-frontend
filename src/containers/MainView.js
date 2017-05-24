@@ -1,20 +1,14 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {ListGroup, ListGroupItem, Badge} from 'react-bootstrap';
-import {C3Chart} from '../components/C3Chart';
+import C3Chart from '../components/C3Chart';
 
 const chartColumnsData = [
   ['data1', 30, 200, 100, 400, 150, 250],
   ['data2', 50, 20, 10, 40, 15, 25]
 ];
 
-class MainView extends Component {
-  constructor(props) {
-    console.log('MainView::constructor');
-    super(props);
-  }
-
+export default class MainView extends Component {
   render() {
     console.log('MainView::render');
     return (
@@ -40,13 +34,3 @@ class MainView extends Component {
     );
   }
 }
-
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = () => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(MainView);

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {Form, FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 
@@ -11,12 +10,7 @@ const carsData = [
   {id: 5, name: 'Lada Samara'}
 ];
 
-class SettingsView extends Component {
-  constructor(props) {
-    console.log('SettingsView::constructor');
-    super(props);
-  }
-
+export default class SettingsView extends Component {
   render() {
     console.log('SettingsView::render');
     return (
@@ -58,13 +52,3 @@ class SettingsView extends Component {
     );
   }
 }
-
-const mapStateToProps = () => {
-  return {};
-};
-
-const mapDispatchToProps = () => {
-  return {};
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(SettingsView);

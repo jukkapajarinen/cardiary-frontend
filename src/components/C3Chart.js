@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 //TODO: Fix blackness-bug with line charts
 
-export class C3Chart extends Component {
+export default class C3Chart extends Component {
   constructor(props) {
     console.log('C3Chart::constructor');
     super(props);

@@ -1,13 +1,13 @@
-export function login(username) {
+export function LoginAction(username) {
   return {
     type: 'LOGIN',
     payload: {'username': username}
   };
 }
 
-export function logout(username) {
+export function LogoutAction() {
   return {
     type: 'LOGOUT',
-    payload: {'username': username}
+    payload: {'username': ''}
   };
 }
