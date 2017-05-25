@@ -1,64 +1,80 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
-import {Form, FormGroup, FormControl, Button} from 'react-bootstrap';
+import {FormGroup, FormControl, Button} from 'react-bootstrap';
+import axios from '../axios_config';
+import {updateCars as UpdateCarsAction} from '../actions/AddRefuelActions';
+import {updateAddRefuel as UpdateAddRefuelAction} from '../actions/AddRefuelActions';
 
-const carsData = [
-  {id: 1, name: 'Toyota Celica'},
-  {id: 2, name: 'Nissan Primera'},
-  {id: 3, name: 'Bugatti Veyron'},
-  {id: 4, name: 'Lamborghini Gallardo'},
-  {id: 5, name: 'Lada Samara'}
-];
+class AddRefuelView extends Component {
+  constructor(props) {
+    super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleOnChange = this.handleOnChange.bind(this);
+    axios({
+      method: 'get',
+      url: '/my-cars/'
+    })
+    .then(response => {
+      this.props.UpdateCarsAction(response.data.results);
+    });
+  }
 
-export default class AddRefuelView extends Component {
+  handleSubmit(e) {
+    e.preventDefault();
+    axios({
+      method: 'post',
+      url: '/my-refuels/',
+      data: {
+        'car': e.target.car.value,
+        'date': e.target.date.value,
+        'distance': e.target.distance.value,
+        'volume': e.target.volume.value,
+        'price': e.target.price.value,
+        'notes': e.target.notes.value
+      }
+    });
+  }
+
+  handleOnChange(e) {
+    e.preventDefault();
+    let next = this.props.AddRefuel;
+    next[e.target.name] = e.target.type === 'select-one' ? e.target.options[e.target.selectedIndex].value : e.target.value;
+    this.props.UpdateAddRefuelAction(next.car, next.date, next.distance, next.volume, next.price, next.notes);
+  }
+
   render() {
     return (
       <Grid>
         <Row>
           <Col xs={ 12 }>
             <Panel header="Enter refuel details">
-              <Form>
+              <form onSubmit={ this.handleSubmit }>
                 <FormGroup>
-                  <FormControl componentClass="select" placeholder="Choose a car">
-                    {carsData.map((car, i) => (
+                  <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose a car" name="car" value={ this.props.AddRefuel.car }>
+                    {this.props.AddRefuel.carsArray.map((car, i) => (
                       <option key={ i } value={ car.id }>{car.name}</option>
                     ))}
                   </FormControl>
                 </FormGroup>
                 <FormGroup>
-                  <FormControl type="date" placeholder="dd/mm/yyyy"/>
+                  <FormControl onChange={ this.handleOnChange } type="date" placeholder="dd/mm/yyyy" name="date" value={ this.props.AddRefuel.date } />
                 </FormGroup>
                 <FormGroup>
-                  <Row>
-                    <Col xs={ 6 }>
-                      <FormControl type="number" placeholder="Full mileage (km)"/>
-                    </Col>
-                    <Col xs={ 6 }>
-                      <FormControl type="number" placeholder="Trip mileage (km)"/>
-                    </Col>
-                  </Row>
+                  <FormControl onChange={ this.handleOnChange } type="number" placeholder="Distance (km)" name="distance" value={ this.props.AddRefuel.distance } />
                 </FormGroup>
                 <FormGroup>
-                  <Row>
-                    <Col xs={ 6 }>
-                      <FormControl type="number" placeholder="Gas price (€)"/>
-                    </Col>
-                    <Col xs={ 6 }>
-                      <FormControl type="number" placeholder="Full price (€)"/>
-                    </Col>
-                  </Row>
+                  <FormControl onChange={ this.handleOnChange } type="number" placeholder="Volume (liters)" name="volume" value={ this.props.AddRefuel.volume } />
                 </FormGroup>
                 <FormGroup>
-                  <FormControl type="number" placeholder="Amount (liters)"/>
+                  <FormControl onChange={ this.handleOnChange } type="number" placeholder="Price (€)" name="price" value={ this.props.AddRefuel.price } />
                 </FormGroup>
                 <FormGroup>
-                  <FormControl type="text" placeholder="Units (l/100 km)"/>
-                </FormGroup>
-                <FormGroup>
-                  <FormControl componentClass="textarea" placeholder="Comments (optional)" style={ {resize: 'none'} }/>
+                  <FormControl onChange={ this.handleOnChange } componentClass="textarea" placeholder="Notes (optional)" style={ {resize: 'none'} } name="notes" value={ this.props.AddRefuel.notes }/>
                 </FormGroup>
                 <Button type="submit" bsStyle="primary" block>Add a Refuel</Button>
-              </Form>
+              </form>
             </Panel>
           </Col>
         </Row>
@@ -66,3 +82,28 @@ export default class AddRefuelView extends Component {
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    AddRefuel: state.AddRefuel
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    UpdateCarsAction: (carsObject) => {
+      dispatch(UpdateCarsAction(carsObject));
+    },
+    UpdateAddRefuelAction: (date, distance, volume, price, notes) => {
+      dispatch(UpdateAddRefuelAction(date, distance, volume, price, notes));
+    }
+  };
+};
+
+AddRefuelView.propTypes = {
+  UpdateCarsAction: PropTypes.func.isRequired,
+  UpdateAddRefuelAction: PropTypes.func.isRequired,
+  AddRefuel: PropTypes.object.isRequired
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddRefuelView);

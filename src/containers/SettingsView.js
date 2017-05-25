@@ -41,7 +41,7 @@ class SettingsView extends Component {
 
   handleOnChange(e) {
     e.preventDefault();
-    let next = this.props.settings;
+    let next = this.props.Settings;
     next[e.target.name] = e.target.type === 'select-one' ? e.target.options[e.target.selectedIndex].value : e.target.value;
     this.props.UpdateSettingsAction(
       next.consumptionUnit,
@@ -60,7 +60,7 @@ class SettingsView extends Component {
               <form onSubmit={ this.handleSubmit }>
                 <FormGroup>
                   <ControlLabel>Consumption unit</ControlLabel>
-                  <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose consumption unit" name="consumptionUnit" value={ this.props.settings.consumptionUnit }>
+                  <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose consumption unit" name="consumptionUnit" value={ this.props.Settings.consumptionUnit }>
                     <option key={ 1 } value="l/100km">l/100km</option>
                     <option key={ 2 } value="mpg(US)">mpg(US)</option>
                     <option key={ 3 } value="mpg(Imp.)">mpg(Imp.)</option>
@@ -68,11 +68,11 @@ class SettingsView extends Component {
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Currency</ControlLabel>
-                  <FormControl onChange={ this.handleOnChange } type="text" placeholder="€" name="currencyUnit" value={ this.props.settings.currencyUnit }/>
+                  <FormControl onChange={ this.handleOnChange } type="text" placeholder="€" name="currencyUnit" value={ this.props.Settings.currencyUnit }/>
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Volume unit</ControlLabel>
-                  <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose volume unit" name="volumeUnit" value={ this.props.settings.volumeUnit }>
+                  <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose volume unit" name="volumeUnit" value={ this.props.Settings.volumeUnit }>
                     <option key={ 1 } value="l">l</option>
                     <option key={ 2 } value="us_gal">us_gal</option>
                     <option key={ 3 } value="imp_gal">imp_gal</option>
@@ -80,7 +80,7 @@ class SettingsView extends Component {
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Distance unit</ControlLabel>
-                  <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose distance unit" name="distanceUnit" value={ this.props.settings.distanceUnit }>
+                  <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose distance unit" name="distanceUnit" value={ this.props.Settings.distanceUnit }>
                     <option key={ 1 } value="km">km</option>
                     <option key={ 2 } value="mi">mi</option>
                   </FormControl>
@@ -97,7 +97,7 @@ class SettingsView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    settings: state.settings
+    Settings: state.Settings
   };
 };
 
@@ -111,7 +111,7 @@ const mapDispatchToProps = (dispatch) => {
 
 SettingsView.propTypes = {
   UpdateSettingsAction: PropTypes.func.isRequired,
-  settings: PropTypes.object.isRequired
+  Settings: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(SettingsView);

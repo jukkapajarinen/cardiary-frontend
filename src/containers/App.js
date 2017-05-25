@@ -16,14 +16,14 @@ class App extends Component {
     return (
       <BrowserRouter>
         <div>
-          {this.props.session.loggedIn ? <Navigation/> : null}
+          {this.props.Session.loggedIn ? <Navigation/> : null}
           <Switch>
-            <Route exact path="/" render={ () => this.props.session.loggedIn ? <MainView/> : <LoginView/> }/>
-            <Route path="/home" render={ () => this.props.session.loggedIn ? <MainView/> : <LoginView/> }/>
-            <Route path="/refuels" render={ () => this.props.session.loggedIn ? <RefuelsView/> : <LoginView/> }/>
-            <Route path="/addrefuel" render={ () => this.props.session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
-            <Route path="/about" render={ () => this.props.session.loggedIn ? <AboutView/> : <LoginView/> }/>
-            <Route path="/settings" render={ () => this.props.session.loggedIn ? <SettingsView/> : <LoginView/> }/>
+            <Route exact path="/" render={ () => this.props.Session.loggedIn ? <MainView/> : <LoginView/> }/>
+            <Route path="/home" render={ () => this.props.Session.loggedIn ? <MainView/> : <LoginView/> }/>
+            <Route path="/refuels" render={ () => this.props.Session.loggedIn ? <RefuelsView/> : <LoginView/> }/>
+            <Route path="/addrefuel" render={ () => this.props.Session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
+            <Route path="/about" render={ () => this.props.Session.loggedIn ? <AboutView/> : <LoginView/> }/>
+            <Route path="/settings" render={ () => this.props.Session.loggedIn ? <SettingsView/> : <LoginView/> }/>
             <Route render={ () => <NotFoundView/> }/>
           </Switch>
         </div>
@@ -34,12 +34,12 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    session: state.session
+    Session: state.Session
   };
 };
 
 App.propTypes = {
-  session: PropTypes.object.isRequired
+  Session: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, null)(App);
