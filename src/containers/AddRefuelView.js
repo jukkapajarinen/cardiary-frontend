@@ -12,7 +12,6 @@ const carsData = [
 
 export default class AddRefuelView extends Component {
   render() {
-    console.log('AddRefuelView::render');
     return (
       <Grid>
         <Row>

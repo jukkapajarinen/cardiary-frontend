@@ -18,7 +18,6 @@ export default class RefuelsView extends Component {
   }
 
   render() {
-    console.log('RefuelsView::render');
     return (
       <Grid>
         <Row>

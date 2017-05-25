@@ -1,14 +1,14 @@
 const initialState = {username: '', loggedIn: false};
 
-const LoginReducer = (state = initialState, action) => {
+const SessionReducer = (state = initialState, action) => {
   switch (action.type) {
-  case 'LOGIN':
+  case 'SESSION_LOGIN':
     return {
       ...state,
       username: action.payload.username,
       loggedIn: true
     };
-  case 'LOGOUT':
+  case 'SESSION_LOGOUT':
     return {
       ...state,
       username: '',
@@ -19,4 +19,4 @@ const LoginReducer = (state = initialState, action) => {
   }
 };
 
-export default LoginReducer;
+export default SessionReducer;

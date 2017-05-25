@@ -12,24 +12,18 @@ import RefuelsView from './RefuelsView';
 import AddRefuelView from './AddRefuelView';
 
 class App extends Component {
-  constructor(props) {
-    console.log('App::constructor');
-    super(props);
-  }
-
   render() {
-    console.log('App::render');
     return (
       <BrowserRouter>
         <div>
-          {this.props.login.loggedIn ? <Navigation/> : null}
+          {this.props.session.loggedIn ? <Navigation/> : null}
           <Switch>
-            <Route exact path="/" render={ () => this.props.login.loggedIn ? <MainView/> : <LoginView/> }/>
-            <Route path="/home" render={ () => this.props.login.loggedIn ? <MainView/> : <LoginView/> }/>
-            <Route path="/refuels" render={ () => this.props.login.loggedIn ? <RefuelsView/> : <LoginView/> }/>
-            <Route path="/addrefuel" render={ () => this.props.login.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
-            <Route path="/about" render={ () => this.props.login.loggedIn ? <AboutView/> : <LoginView/> }/>
-            <Route path="/settings" render={ () => this.props.login.loggedIn ? <SettingsView/> : <LoginView/> }/>
+            <Route exact path="/" render={ () => this.props.session.loggedIn ? <MainView/> : <LoginView/> }/>
+            <Route path="/home" render={ () => this.props.session.loggedIn ? <MainView/> : <LoginView/> }/>
+            <Route path="/refuels" render={ () => this.props.session.loggedIn ? <RefuelsView/> : <LoginView/> }/>
+            <Route path="/addrefuel" render={ () => this.props.session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
+            <Route path="/about" render={ () => this.props.session.loggedIn ? <AboutView/> : <LoginView/> }/>
+            <Route path="/settings" render={ () => this.props.session.loggedIn ? <SettingsView/> : <LoginView/> }/>
             <Route render={ () => <NotFoundView/> }/>
           </Switch>
         </div>
@@ -40,12 +34,12 @@ class App extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    login: state.login
+    session: state.session
   };
 };
 
 App.propTypes = {
-  login: PropTypes.object.isRequired
+  session: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, null)(App);

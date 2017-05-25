@@ -5,11 +5,6 @@ import PropTypes from 'prop-types';
 //TODO: Fix blackness-bug with line charts
 
 export default class C3Chart extends Component {
-  constructor(props) {
-    console.log('C3Chart::constructor');
-    super(props);
-  }
-
   updateChart() {
     c3.generate({
       bindto: '#chart',
@@ -21,12 +16,10 @@ export default class C3Chart extends Component {
   }
 
   componentDidMount() {
-    console.log('C3Chart::componentDidMount');
     this.updateChart();
   }
 
   componentDidUpdate() {
-    console.log('C3Chart::componentDidUpdate');
     this.updateChart();
   }
 

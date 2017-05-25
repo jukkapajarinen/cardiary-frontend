@@ -8,7 +8,8 @@ Project is open-sourced and made in collaboration with @Kazooiebombchu.
 * react
 * redux
 * redux-router
-* jwt authentication
+* react-router-bootstrap
+* axios
 * react-bootstrap
 * bootswatch-paper
 * C3 Charts

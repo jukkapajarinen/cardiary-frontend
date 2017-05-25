@@ -10,7 +10,6 @@ const chartColumnsData = [
 
 export default class MainView extends Component {
   render() {
-    console.log('MainView::render');
     return (
       <Grid>
         <Row>

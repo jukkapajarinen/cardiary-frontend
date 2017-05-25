@@ -1,10 +1,14 @@
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import {createLogger} from 'redux-logger';
 import thunk from 'redux-thunk';
-import login from './reducers/LoginReducer';
+import session from './reducers/SessionReducer';
+import settings from './reducers/SettingsReducer';
 
 export default createStore(
-    combineReducers({login}),
+    combineReducers({
+      session,
+      settings
+    }),
     {},
     applyMiddleware(createLogger(), thunk)
 );

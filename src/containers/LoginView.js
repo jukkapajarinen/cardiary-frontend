@@ -3,12 +3,11 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {FormGroup, InputGroup, Glyphicon, FormControl, Button} from 'react-bootstrap';
-import {LoginAction} from '../actions/LoginActions';
+import {login as LoginAction} from '../actions/SessionActions';
 import axios from '../axios_config';
 
 class LoginView extends Component {
   constructor(props) {
-    console.log('LoginView::constructor');
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -16,23 +15,23 @@ class LoginView extends Component {
   handleSubmit(e) {
     e.preventDefault();
     let username = e.target.username.value;
-    let password = e.target.password.value;
-    axios.post('/api-token-auth/', {
-      username: username,
-      password: password
+    axios({
+      method: 'post',
+      url: '/api-token-auth/',
+      data: {
+        'username': e.target.username.value,
+        'password': e.target.password.value
+      }
     })
     .then(response => {
       let token = response.data.token;
       localStorage.setItem('jwt_token', token);
       this.props.LoginAction(username);
     })
-    .catch(function () {
-      localStorage.removeItem('jwt_token');
-    });
+    .catch(() => { localStorage.removeItem('jwt_token'); });
   }
 
   render() {
-    console.log('LoginView::render');
     return (
       <Grid>
         <Row>
@@ -42,7 +41,7 @@ class LoginView extends Component {
                 <FormGroup>
                   <InputGroup>
                     <InputGroup.Addon><Glyphicon glyph="user"/></InputGroup.Addon>
-                    <FormControl type="text" name="username" placeholder="Username"/>
+                    <FormControl autoFocus type="text" name="username" placeholder="Username" inputRef={ autofocus => {this.input = autofocus;} }/>
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>

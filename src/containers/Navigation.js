@@ -3,11 +3,10 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Navbar, Nav, NavItem} from 'react-bootstrap';
-import {LogoutAction} from '../actions/LoginActions';
+import {logout as LogoutAction} from '../actions/SessionActions';
 
 class Navigation extends Component{
   constructor(props) {
-    console.log('Navigation::constructor');
     super(props);
     this.handleLogout = this.handleLogout.bind(this);
   }
