@@ -1,18 +1,24 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import PropTypes from 'prop-types';
 import {Grid, Row, Col} from 'react-bootstrap';
 import {Table, Pagination} from 'react-bootstrap';
+import axios from '../axios_config';
+import {updateRefuels as UpdateRefuelsAction} from '../actions/RefuelsActions';
 
-const refuelsData = [
-  { date: '11/05/2017', car: 'Toyota Celica', average: '5 l/km', trip: '200 km', price: '1.56 €' },
-  { date: '13/09/1991', car: 'Nissan Primera', average: '3 l/km', trip: '102 km', price: '1.32 €' },
-  { date: '13/09/1991', car: 'Nissan Primera', average: '3 l/km', trip: '102 km', price: '1.32 €' },
-  { date: '13/09/1991', car: 'Nissan Primera', average: '3 l/km', trip: '102 km', price: '1.32 €' },
-  { date: '13/09/1991', car: 'Nissan Primera', average: '3 l/km', trip: '102 km', price: '1.32 €' },
-  { date: '01/02/2016', car: 'Bugatti Veyron', average: '12 l/km', trip: '96 km', price: '1.27 €' }
-];
-const refuelsDataPages = 10;
+class RefuelsView extends Component {
+  constructor(props) {
+    super(props);
+    this.handlePagination = this.handlePagination.bind(this);
+    axios({
+      method: 'get',
+      url: '/my-refuels/'
+    })
+    .then(response => {
+      this.props.UpdateRefuelsAction(response.data.results, 10, 1);
+    });
+  }
 
-export default class RefuelsView extends Component {
   handlePagination(eventKey) {
     console.log(eventKey);
   }
@@ -27,27 +33,51 @@ export default class RefuelsView extends Component {
                 <tr>
                   <th>Date</th>
                   <th>Car</th>
-                  <th>Average</th>
-                  <th>Trip</th>
+                  <th>Distance</th>
+                  <th>Volume</th>
                   <th>Price</th>
                 </tr>
               </thead>
               <tbody>
-                {refuelsData.map((refill, i) => (
-                  <tr key={ i }>
-                    <td>{refill.date}</td>
-                    <td>{refill.car}</td>
-                    <td>{refill.average}</td>
-                    <td>{refill.trip}</td>
-                    <td>{refill.price}</td>
+                {this.props.Refuels.refuelsArray.map((refuel) => (
+                  <tr key={ refuel.id }>
+                    <td>{refuel.date}</td>
+                    <td>{refuel.car}</td>
+                    <td>{refuel.distance}</td>
+                    <td>{refuel.volume}</td>
+                    <td>{refuel.price}</td>
                   </tr>
               ))}
               </tbody>
             </Table>
-            <Pagination prev next last first boundaryLinks items={ refuelsDataPages } maxButtons={ 3 } onSelect={ this.handlePagination }/>
+            <div className="text-center">
+              <Pagination prev next last first boundaryLinks items={ this.props.Refuels.pages } maxButtons={ 3 } onSelect={ this.handlePagination }/>
+            </div>
           </Col>
         </Row>
       </Grid>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    Refuels: state.Refuels
+  };
+};
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    UpdateRefuelsAction: (refuelsArray, currentPage) => {
+      dispatch(UpdateRefuelsAction(refuelsArray, currentPage));
+    }
+  };
+};
+
+RefuelsView.propTypes = {
+  Refuels: PropTypes.object.isRequired,
+  UpdateRefuelsAction: PropTypes.func.isRequired
+
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RefuelsView);
