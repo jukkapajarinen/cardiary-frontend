@@ -11,6 +11,16 @@ class SettingsView extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.state = {'consumptionUnitOptions': [],'distanceUnitOptions': [],'volumeUnitOptions': []}
+    axios({
+      method: 'options',
+      url: '/my-options/'
+    })
+    .then(response => {
+      this.state = {...this.state, 'consumptionUnitOptions': response.data.actions.PUT.consumption_unit.choices};
+      this.state = {...this.state, 'distanceUnitOptions': response.data.actions.PUT.distance_unit.choices};
+      this.state = {...this.state, 'volumeUnitOptions': response.data.actions.PUT.volume_unit.choices};
+    });
     axios({
       method: 'get',
       url: '/my-options/'
@@ -52,6 +62,7 @@ class SettingsView extends Component {
   }
 
   render() {
+    console.log(this.state);
     return (
       <Grid>
         <Row>
@@ -61,9 +72,9 @@ class SettingsView extends Component {
                 <FormGroup>
                   <ControlLabel>Consumption unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose consumption unit" name="consumptionUnit" value={ this.props.Settings.consumptionUnit }>
-                    <option key={ 1 } value="l/100km">l/100km</option>
-                    <option key={ 2 } value="mpg(US)">mpg(US)</option>
-                    <option key={ 3 } value="mpg(Imp.)">mpg(Imp.)</option>
+                    {this.state.consumptionUnitOptions.map((consumptionUnit, id) => (
+                    <option key={ id } value={consumptionUnit.value}>{consumptionUnit.display_name}</option>
+                    ))}
                   </FormControl>
                 </FormGroup>
                 <FormGroup>
@@ -73,16 +84,17 @@ class SettingsView extends Component {
                 <FormGroup>
                   <ControlLabel>Volume unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose volume unit" name="volumeUnit" value={ this.props.Settings.volumeUnit }>
-                    <option key={ 1 } value="l">l</option>
-                    <option key={ 2 } value="us_gal">us_gal</option>
-                    <option key={ 3 } value="imp_gal">imp_gal</option>
+                    {this.state.volumeUnitOptions.map((volumeUnit, id) => (
+                      <option key={ id } value={volumeUnit.value}>{volumeUnit.display_name}</option>
+                    ))}
                   </FormControl>
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Distance unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose distance unit" name="distanceUnit" value={ this.props.Settings.distanceUnit }>
-                    <option key={ 1 } value="km">km</option>
-                    <option key={ 2 } value="mi">mi</option>
+                    {this.state.distanceUnitOptions.map((distanceUnit, id) => (
+                      <option key={ id } value={distanceUnit.value}>{distanceUnit.display_name}</option>
+                    ))}
                   </FormControl>
                 </FormGroup>
                 <Button type="submit" bsStyle="success" block>Save Settings</Button>
