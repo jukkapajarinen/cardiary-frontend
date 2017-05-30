@@ -10,6 +10,7 @@ import LoginView from './LoginView';
 import SettingsView from './SettingsView';
 import RefuelsView from './RefuelsView';
 import AddRefuelView from './AddRefuelView';
+import ProfileView from './ProfileView';
 
 class App extends Component {
   render() {
@@ -24,6 +25,7 @@ class App extends Component {
             <Route path="/addrefuel" render={ () => this.props.Session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
             <Route path="/about" render={ () => this.props.Session.loggedIn ? <AboutView/> : <LoginView/> }/>
             <Route path="/settings" render={ () => this.props.Session.loggedIn ? <SettingsView/> : <LoginView/> }/>
+            <Route path="/profile" render={ () => this.props.Session.loggedIn ? <ProfileView/> : <LoginView/> }/>
             <Route render={ () => <NotFoundView/> }/>
           </Switch>
         </div>
