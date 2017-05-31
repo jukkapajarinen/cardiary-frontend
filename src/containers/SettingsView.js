@@ -17,9 +17,10 @@ class SettingsView extends Component {
       url: '/my-options/'
     })
     .then(response => {
-      this.state = {...this.state, 'consumptionUnitOptions': response.data.actions.PUT.consumption_unit.choices};
-      this.state = {...this.state, 'distanceUnitOptions': response.data.actions.PUT.distance_unit.choices};
-      this.state = {...this.state, 'volumeUnitOptions': response.data.actions.PUT.volume_unit.choices};
+      this.setState({...this.state, 'consumptionUnitOptions': response.data.actions.PUT.consumption_unit.choices});
+      this.setState({...this.state, 'distanceUnitOptions': response.data.actions.PUT.distance_unit.choices});
+      this.setState({...this.state, 'volumeUnitOptions': response.data.actions.PUT.volume_unit.choices});
+      console.log('sdda');
     });
     axios({
       method: 'get',
