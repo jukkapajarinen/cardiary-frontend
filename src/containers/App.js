@@ -11,8 +11,28 @@ import SettingsView from './SettingsView';
 import RefuelsView from './RefuelsView';
 import AddRefuelView from './AddRefuelView';
 import ProfileView from './ProfileView';
+import axios from '../axios_config';
+import {tokenLogin as SessionTokenLogin} from '../actions/SessionActions';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    if(localStorage.getItem('jwt_token') != null) {
+      axios({
+        method: 'post',
+        url: '/api-token-verify/',
+        data: {
+          'token': localStorage.getItem('jwt_token')
+        }
+      })
+      .then(response => {
+        if(localStorage.getItem('jwt_token') === response.data.token) {
+          this.props.SessionTokenLogin();
+        }
+      });
+    }
+  }
+
   render() {
     return (
       <BrowserRouter>
@@ -40,8 +60,17 @@ const mapStateToProps = (state) => {
   };
 };
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    SessionTokenLogin: () => {
+      dispatch(SessionTokenLogin());
+    }
+  }
+}
+
 App.propTypes = {
-  Session: PropTypes.object.isRequired
+  Session: PropTypes.object.isRequired,
+  SessionTokenLogin: PropTypes.func.isRequired
 };
 
-export default connect(mapStateToProps, null)(App);
+export default connect(mapStateToProps, mapDispatchToProps)(App);

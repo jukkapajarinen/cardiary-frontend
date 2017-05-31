@@ -19,6 +19,11 @@ const SessionReducer = (state = initialState, action) => {
       username: '',
       loggedIn: false
     };
+  case 'SESSION_TOKEN_LOGIN':
+    return {
+      ...state,
+      loggedIn: true
+    }
   default:
     return state;
   }
