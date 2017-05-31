@@ -5,22 +5,33 @@ import {Grid, Row, Col} from 'react-bootstrap';
 import {Table, Pagination} from 'react-bootstrap';
 import axios from '../axios_config';
 import {updateData as UpdateDataAction} from '../actions/RefuelsActions';
+import {updatePagination as UpdatePaginationAction} from '../actions/RefuelsActions';
 
 class RefuelsView extends Component {
   constructor(props) {
     super(props);
     this.handlePagination = this.handlePagination.bind(this);
-    axios({
-      method: 'get',
-      url: '/my-refuels/'
-    })
-    .then(response => {
-      this.props.UpdateDataAction(response.data.results, 10, 1);
-    });
+    this.getRefuelsFromBackend(this.props.Refuels.activePage, this.props.Refuels.pageSize);
   }
 
   handlePagination(eventKey) {
-    console.log(eventKey);
+    this.getRefuelsFromBackend(eventKey, this.props.Refuels.pageSize);
+  }
+
+  getRefuelsFromBackend(page, pageSize) {
+    axios({
+      method: 'get',
+      url: '/my-refuels/',
+      params: {
+        'page': page,
+        'page_size': pageSize
+      }
+    })
+    .then(response => {
+      console.log(response.data);
+      this.props.UpdateDataAction(response.data.results);
+      this.props.UpdatePaginationAction(Math.ceil(response.data.count / pageSize), page);
+    });
   }
 
   render() {
@@ -51,7 +62,7 @@ class RefuelsView extends Component {
               </tbody>
             </Table>
             <div className="text-center">
-              <Pagination prev next last first boundaryLinks items={ this.props.Refuels.pages } maxButtons={ 3 } onSelect={ this.handlePagination }/>
+              <Pagination prev next last first items={ this.props.Refuels.numPages } activePage={ this.props.Refuels.activePage } maxButtons={ 5 } onSelect={ this.handlePagination }/>
             </div>
           </Col>
         </Row>
@@ -68,15 +79,19 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    UpdateDataAction: (refuelsArray, currentPage) => {
-      dispatch(UpdateDataAction(refuelsArray, currentPage));
+    UpdateDataAction: (refuelsArray) => {
+      dispatch(UpdateDataAction(refuelsArray));
+    },
+    UpdatePaginationAction: (numPages, activePage) => {
+      dispatch(UpdatePaginationAction(numPages, activePage));
     }
   };
 };
 
 RefuelsView.propTypes = {
   Refuels: PropTypes.object.isRequired,
-  UpdateDataAction: PropTypes.func.isRequired
+  UpdateDataAction: PropTypes.func.isRequired,
+  UpdatePaginationAction: PropTypes.func.isRequired
 
 };
 

@@ -1,10 +1,18 @@
-export function updateData(refuelsArray, pages, currentPage) {
+export function updateData(refuelsArray) {
   return {
     type: 'REFUELS_UPDATE_DATA',
     payload: {
-      'refuelsArray': refuelsArray,
-      'pages': pages,
-      'currentPage': currentPage
+      'refuelsArray': refuelsArray
     }
   };
+}
+
+export function updatePagination(numPages, activePage) {
+  return {
+    type: 'REFUELS_UPDATE_PAGINATION',
+    payload: {
+      'numPages': numPages,
+      'activePage': activePage
+    }
+  }
 }
