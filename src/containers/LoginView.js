@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {FormGroup, InputGroup, Glyphicon, FormControl, Button} from 'react-bootstrap';
-import {login as LoginAction} from '../actions/SessionActions';
+import {login as SessionLoginAction} from '../actions/SessionActions';
 import axios from '../axios_config';
 
 class LoginView extends Component {
@@ -25,8 +25,7 @@ class LoginView extends Component {
     })
     .then(response => {
       let token = response.data.token;
-      localStorage.setItem('jwt_token', token);
-      this.props.LoginAction(username);
+      this.props.SessionLoginAction(token, username);
     })
     .catch(() => { localStorage.removeItem('jwt_token'); });
   }
@@ -62,14 +61,14 @@ class LoginView extends Component {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LoginAction: (username) => {
-      dispatch(LoginAction(username));
+    SessionLoginAction: (token, username) => {
+      dispatch(SessionLoginAction(token, username));
     }
   };
 };
 
 LoginView.propTypes = {
-  LoginAction: PropTypes.func.isRequired
+  SessionLoginAction: PropTypes.func.isRequired
 };
 
 export default connect(null, mapDispatchToProps)(LoginView);

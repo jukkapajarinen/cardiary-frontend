@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {LinkContainer} from 'react-router-bootstrap';
 import {Navbar, Nav, NavItem, NavDropdown, Glyphicon} from 'react-bootstrap';
-import {logout as LogoutAction} from '../actions/SessionActions';
+import {logout as SessionLogoutAction} from '../actions/SessionActions';
 
 class Navigation extends Component{
   constructor(props) {
@@ -12,8 +12,7 @@ class Navigation extends Component{
   }
 
   handleLogout() {
-    localStorage.removeItem('jwt_token');
-    this.props.LogoutAction();
+    this.props.SessionLogoutAction();
   }
 
   render () {
@@ -53,15 +52,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    LogoutAction: (username) => {
-      dispatch(LogoutAction(username));
+    SessionLogoutAction: () => {
+      dispatch(SessionLogoutAction());
     }
   };
 };
 
 Navigation.propTypes = {
   Session: PropTypes.object.isRequired,
-  LogoutAction: PropTypes.func.isRequired
+  SessionLogoutAction: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Navigation);
