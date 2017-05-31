@@ -1,13 +1,13 @@
 export function updateCars(carsArray) {
   return {
-    type: 'UPDATE_CARS',
+    type: 'ADD_REFUEL_UPDATE_CARS',
     payload: {'carsArray': carsArray}
   };
 }
 
-export function updateAddRefuel(car, date, distance, volume, price, notes) {
+export function updateForm(car, date, distance, volume, price, notes) {
   return {
-    type: 'UPDATE_ADD_REFUEL',
+    type: 'ADD_REFUEL_UPDATE_FORM',
     payload: {
       'car': car,
       'date': date,

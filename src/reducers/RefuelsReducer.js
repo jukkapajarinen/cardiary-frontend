@@ -1,8 +1,12 @@
-const initialState = {refuelsArray: [], pages: 10, currentPage: 1};
+const initialState = {
+  refuelsArray: [],
+  pages: 10,
+  currentPage: 1
+};
 
 const RefuelsReducer = (state = initialState, action) => {
   switch (action.type) {
-  case 'UPDATE_REFUELS':
+  case 'REFUELS_UPDATE_DATA':
     return {
       ...state,
       refuelsArray: action.payload.refuelsArray,

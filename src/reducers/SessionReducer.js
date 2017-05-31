@@ -1,4 +1,7 @@
-const initialState = {username: '', loggedIn: false};
+const initialState = {
+  username: '',
+  loggedIn: false
+};
 
 const SessionReducer = (state = initialState, action) => {
   switch (action.type) {

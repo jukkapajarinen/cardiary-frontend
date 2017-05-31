@@ -4,30 +4,31 @@ import PropTypes from 'prop-types';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
 import axios from '../axios_config';
-import {updateSettings as UpdateSettingsAction} from '../actions/SettingsActions';
+import {updateForm as UpdateFormAction} from '../actions/SettingsActions';
+import {updateChoices as UpdateChoicesAction} from '../actions/SettingsActions';
 
 class SettingsView extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
-    this.state = {'consumptionUnitOptions': [],'distanceUnitOptions': [],'volumeUnitOptions': []}
     axios({
       method: 'options',
       url: '/my-options/'
     })
     .then(response => {
-      this.setState({...this.state, 'consumptionUnitOptions': response.data.actions.PUT.consumption_unit.choices});
-      this.setState({...this.state, 'distanceUnitOptions': response.data.actions.PUT.distance_unit.choices});
-      this.setState({...this.state, 'volumeUnitOptions': response.data.actions.PUT.volume_unit.choices});
-      console.log('sdda');
+      this.props.UpdateChoicesAction(
+        response.data.actions.PUT.consumption_unit.choices,
+        response.data.actions.PUT.volume_unit.choices,
+        response.data.actions.PUT.distance_unit.choices
+      );
     });
     axios({
       method: 'get',
       url: '/my-options/'
     })
     .then(response => {
-      this.props.UpdateSettingsAction(
+      this.props.UpdateFormAction(
         response.data.consumption_unit,
         response.data.currency_unit,
         response.data.volume_unit,
@@ -54,7 +55,7 @@ class SettingsView extends Component {
     e.preventDefault();
     let next = this.props.Settings;
     next[e.target.name] = e.target.type === 'select-one' ? e.target.options[e.target.selectedIndex].value : e.target.value;
-    this.props.UpdateSettingsAction(
+    this.props.UpdateFormAction(
       next.consumptionUnit,
       next.currencyUnit,
       next.volumeUnit,
@@ -73,7 +74,7 @@ class SettingsView extends Component {
                 <FormGroup>
                   <ControlLabel>Consumption unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose consumption unit" name="consumptionUnit" value={ this.props.Settings.consumptionUnit }>
-                    {this.state.consumptionUnitOptions.map((consumptionUnit, id) => (
+                    {this.props.Settings.consumptionUnitChoices.map((consumptionUnit, id) => (
                     <option key={ id } value={consumptionUnit.value}>{consumptionUnit.display_name}</option>
                     ))}
                   </FormControl>
@@ -85,7 +86,7 @@ class SettingsView extends Component {
                 <FormGroup>
                   <ControlLabel>Volume unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose volume unit" name="volumeUnit" value={ this.props.Settings.volumeUnit }>
-                    {this.state.volumeUnitOptions.map((volumeUnit, id) => (
+                    {this.props.Settings.volumeUnitChoices.map((volumeUnit, id) => (
                       <option key={ id } value={volumeUnit.value}>{volumeUnit.display_name}</option>
                     ))}
                   </FormControl>
@@ -93,7 +94,7 @@ class SettingsView extends Component {
                 <FormGroup>
                   <ControlLabel>Distance unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose distance unit" name="distanceUnit" value={ this.props.Settings.distanceUnit }>
-                    {this.state.distanceUnitOptions.map((distanceUnit, id) => (
+                    {this.props.Settings.distanceUnitChoices.map((distanceUnit, id) => (
                       <option key={ id } value={distanceUnit.value}>{distanceUnit.display_name}</option>
                     ))}
                   </FormControl>
@@ -116,14 +117,18 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    UpdateSettingsAction: (consumptionUnit, currencyUnit, volumeUnit, distanceUnit) => {
-      dispatch(UpdateSettingsAction(consumptionUnit, currencyUnit, volumeUnit, distanceUnit));
+    UpdateFormAction: (consumptionUnit, currencyUnit, volumeUnit, distanceUnit) => {
+      dispatch(UpdateFormAction(consumptionUnit, currencyUnit, volumeUnit, distanceUnit));
+    },
+    UpdateChoicesAction: (consumptionUnitChoices, volumeUnitChoices, distanceUnitChoices) => {
+      dispatch(UpdateChoicesAction(consumptionUnitChoices, volumeUnitChoices, distanceUnitChoices));
     }
   };
 };
 
 SettingsView.propTypes = {
-  UpdateSettingsAction: PropTypes.func.isRequired,
+  UpdateFormAction: PropTypes.func.isRequired,
+  UpdateChoicesAction: PropTypes.func.isRequired,
   Settings: PropTypes.object.isRequired
 };
 

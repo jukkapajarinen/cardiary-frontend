@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import {Grid, Row, Col} from 'react-bootstrap';
 import {Table, Pagination} from 'react-bootstrap';
 import axios from '../axios_config';
-import {updateRefuels as UpdateRefuelsAction} from '../actions/RefuelsActions';
+import {updateData as UpdateDataAction} from '../actions/RefuelsActions';
 
 class RefuelsView extends Component {
   constructor(props) {
@@ -15,7 +15,7 @@ class RefuelsView extends Component {
       url: '/my-refuels/'
     })
     .then(response => {
-      this.props.UpdateRefuelsAction(response.data.results, 10, 1);
+      this.props.UpdateDataAction(response.data.results, 10, 1);
     });
   }
 
@@ -68,15 +68,15 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    UpdateRefuelsAction: (refuelsArray, currentPage) => {
-      dispatch(UpdateRefuelsAction(refuelsArray, currentPage));
+    UpdateDataAction: (refuelsArray, currentPage) => {
+      dispatch(UpdateDataAction(refuelsArray, currentPage));
     }
   };
 };
 
 RefuelsView.propTypes = {
   Refuels: PropTypes.object.isRequired,
-  UpdateRefuelsAction: PropTypes.func.isRequired
+  UpdateDataAction: PropTypes.func.isRequired
 
 };
 

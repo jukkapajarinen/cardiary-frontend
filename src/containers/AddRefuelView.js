@@ -5,7 +5,7 @@ import {Grid, Row, Col, Panel} from 'react-bootstrap';
 import {FormGroup, FormControl, Button} from 'react-bootstrap';
 import axios from '../axios_config';
 import {updateCars as UpdateCarsAction} from '../actions/AddRefuelActions';
-import {updateAddRefuel as UpdateAddRefuelAction} from '../actions/AddRefuelActions';
+import {updateForm as UpdateFormAction} from '../actions/AddRefuelActions';
 
 class AddRefuelView extends Component {
   constructor(props) {
@@ -41,7 +41,7 @@ class AddRefuelView extends Component {
     e.preventDefault();
     let next = this.props.AddRefuel;
     next[e.target.name] = e.target.type === 'select-one' ? e.target.options[e.target.selectedIndex].value : e.target.value;
-    this.props.UpdateAddRefuelAction(next.car, next.date, next.distance, next.volume, next.price, next.notes);
+    this.props.UpdateFormAction(next.car, next.date, next.distance, next.volume, next.price, next.notes);
   }
 
   render() {
@@ -94,15 +94,15 @@ const mapDispatchToProps = (dispatch) => {
     UpdateCarsAction: (carsObject) => {
       dispatch(UpdateCarsAction(carsObject));
     },
-    UpdateAddRefuelAction: (date, distance, volume, price, notes) => {
-      dispatch(UpdateAddRefuelAction(date, distance, volume, price, notes));
+    UpdateFormAction: (date, distance, volume, price, notes) => {
+      dispatch(UpdateFormAction(date, distance, volume, price, notes));
     }
   };
 };
 
 AddRefuelView.propTypes = {
   UpdateCarsAction: PropTypes.func.isRequired,
-  UpdateAddRefuelAction: PropTypes.func.isRequired,
+  UpdateFormAction: PropTypes.func.isRequired,
   AddRefuel: PropTypes.object.isRequired
 };
 

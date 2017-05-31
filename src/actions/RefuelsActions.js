@@ -1,6 +1,6 @@
-export function updateRefuels(refuelsArray, pages, currentPage) {
+export function updateData(refuelsArray, pages, currentPage) {
   return {
-    type: 'UPDATE_REFUELS',
+    type: 'REFUELS_UPDATE_DATA',
     payload: {
       'refuelsArray': refuelsArray,
       'pages': pages,
