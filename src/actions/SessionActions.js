@@ -1,7 +1,7 @@
-export function login(token, username) {
+export function login(token) {
   return {
     type: 'SESSION_LOGIN',
-    payload: {'token': token,'username': username}
+    payload: {'token': token}
   };
 }
 

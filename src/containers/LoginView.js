@@ -14,7 +14,6 @@ class LoginView extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    let username = e.target.username.value;
     axios({
       method: 'post',
       url: '/api-token/auth/',
@@ -25,7 +24,7 @@ class LoginView extends Component {
     })
     .then(response => {
       let token = response.data.token;
-      this.props.SessionLoginAction(token, username);
+      this.props.SessionLoginAction(token);
     })
     .catch(() => { localStorage.removeItem('jwt_token'); });
   }

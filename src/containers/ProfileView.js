@@ -8,7 +8,6 @@ class ProfileView extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
-    //TODO: axios - fetch passwords
   }
 
   handleSubmit(e) {
@@ -26,7 +25,11 @@ class ProfileView extends Component {
               <form onSubmit={ this.handleSubmit }>
                 <FormGroup>
                   <ControlLabel>Username</ControlLabel>
-                  <FormControl type="text" placeholder="Username" name="username" value={this.props.Session.username} disabled/>
+                  <FormControl type="text" placeholder="Username" name="username" value={this.props.Profile.username} disabled/>
+                </FormGroup>
+                <FormGroup>
+                  <ControlLabel>Email</ControlLabel>
+                  <FormControl type="email" placeholder="Enter your email" name="email" value={this.props.Profile.email}/>
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Current password</ControlLabel>
@@ -52,12 +55,12 @@ class ProfileView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    Session: state.Session
+    Profile: state.Profile
   };
 };
 
 ProfileView.propTypes = {
-  Session: PropTypes.object.isRequired
+  Profile: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, null)(ProfileView);

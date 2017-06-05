@@ -1,5 +1,4 @@
 const initialState = {
-  username: '',
   loggedIn: false
 };
 
@@ -9,14 +8,12 @@ const SessionReducer = (state = initialState, action) => {
     localStorage.setItem('jwt_token', action.payload.token);
     return {
       ...state,
-      username: action.payload.username,
       loggedIn: true
     };
   case 'SESSION_LOGOUT':
     localStorage.removeItem('jwt_token');
     return {
       ...state,
-      username: '',
       loggedIn: false
     };
   case 'SESSION_TOKEN_LOGIN':

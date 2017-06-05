@@ -33,7 +33,7 @@ class Navigation extends Component{
             <LinkContainer to="/settings"><NavItem eventKey={ 5 }>Settings</NavItem></LinkContainer>
           </Nav>
           <Nav pullRight>
-            <NavDropdown eventKey={ 6 } title={<span><Glyphicon glyph='user' /> {this.props.Session.username}</span>} id="userDropdown">
+            <NavDropdown eventKey={ 6 } title={<span><Glyphicon glyph='user' /> {this.props.Profile.username}</span>} id="userDropdown">
               <LinkContainer to="/profile"><NavItem eventKey={ 6.1 }>Profile</NavItem></LinkContainer>
               <NavItem eventKey={ 6.2 } onSelect={ this.handleLogout }>Logout</NavItem>
             </NavDropdown>
@@ -46,7 +46,7 @@ class Navigation extends Component{
 
 const mapStateToProps = (state) => {
   return {
-    Session: state.Session
+    Profile: state.Profile
   };
 };
 
@@ -59,7 +59,7 @@ const mapDispatchToProps = (dispatch) => {
 };
 
 Navigation.propTypes = {
-  Session: PropTypes.object.isRequired,
+  Profile: PropTypes.object.isRequired,
   SessionLogoutAction: PropTypes.func.isRequired
 };
 

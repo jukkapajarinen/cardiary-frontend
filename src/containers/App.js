@@ -13,6 +13,7 @@ import AddRefuelView from './AddRefuelView';
 import ProfileView from './ProfileView';
 import axios from '../axios_config';
 import {tokenLogin as SessionTokenLogin} from '../actions/SessionActions';
+import {updateData as UpdateProfileDataAction} from '../actions/ProfileActions';
 
 class App extends Component {
   constructor(props) {
@@ -34,6 +35,17 @@ class App extends Component {
   }
 
   render() {
+    if(this.props.Session.loggedIn) {
+      axios({
+        method: 'get',
+        url: '/me/'
+      })
+      .then(response => {
+        this.props.UpdateProfileDataAction(response.data.username, response.data.email);
+        console.log(response.data);
+      });
+    }
+
     return (
       <BrowserRouter>
         <div>
@@ -64,13 +76,17 @@ const mapDispatchToProps = (dispatch) => {
   return {
     SessionTokenLogin: () => {
       dispatch(SessionTokenLogin());
+    },
+    UpdateProfileDataAction: (username, email) => {
+      dispatch(UpdateProfileDataAction(username, email));
     }
-  }
+  };
 }
 
 App.propTypes = {
   Session: PropTypes.object.isRequired,
-  SessionTokenLogin: PropTypes.func.isRequired
+  SessionTokenLogin: PropTypes.func.isRequired,
+  UpdateProfileDataAction: PropTypes.func.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
