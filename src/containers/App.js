@@ -20,7 +20,7 @@ class App extends Component {
     if(localStorage.getItem('jwt_token') != null) {
       axios({
         method: 'post',
-        url: '/api-token-verify/',
+        url: '/api-token/verify/',
         data: {
           'token': localStorage.getItem('jwt_token')
         }

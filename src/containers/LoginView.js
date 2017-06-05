@@ -17,7 +17,7 @@ class LoginView extends Component {
     let username = e.target.username.value;
     axios({
       method: 'post',
-      url: '/api-token-auth/',
+      url: '/api-token/auth/',
       data: {
         'username': e.target.username.value,
         'password': e.target.password.value
