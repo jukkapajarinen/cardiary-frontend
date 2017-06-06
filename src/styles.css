@@ -1,1 +1,4 @@
 nav.navbar .nav.navbar-right .dropdown.open #userDropdown+.dropdown-menu { min-width: 95px; }
+nav.navbar .nav.navbar-nav>li.active>a { background-color: transparent !important; }
+.panel>.panel-heading>.panel-title { font-size: 13px !important;  }
+.panel>.panel-heading>.panel-title .dropdown.btn-group>button { padding: 0 12px; }

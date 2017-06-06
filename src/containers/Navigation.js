@@ -20,13 +20,13 @@ class Navigation extends Component{
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <LinkContainer to="/home"><a>Cardiary</a></LinkContainer>
+            <LinkContainer to="/"><a>Cardiary</a></LinkContainer>
           </Navbar.Brand>
           <Navbar.Toggle/>
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <LinkContainer to="/home"><NavItem eventKey={ 1 }>Home</NavItem></LinkContainer>
+            <LinkContainer to="/"><NavItem eventKey={ 1 }>Home</NavItem></LinkContainer>
             <LinkContainer to="/refuels"><NavItem eventKey={ 2 }>Refuels</NavItem></LinkContainer>
             <LinkContainer to="/addrefuel"><NavItem eventKey={ 3 }>Add Refuel</NavItem></LinkContainer>
             <LinkContainer to="/about"><NavItem eventKey={ 4 }>About</NavItem></LinkContainer>

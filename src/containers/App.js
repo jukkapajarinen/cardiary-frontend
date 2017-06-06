@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Navigation from './Navigation';
 import AboutView from '../components/AboutView';
 import NotFoundView from '../components/NotFoundView';
-import MainView from './MainView';
+import DashboardView from './Dashboard';
 import LoginView from './LoginView';
 import SettingsView from './SettingsView';
 import RefuelsView from './RefuelsView';
@@ -42,7 +42,6 @@ class App extends Component {
       })
       .then(response => {
         this.props.UpdateProfileDataAction(response.data.username, response.data.email);
-        console.log(response.data);
       });
     }
 
@@ -51,8 +50,7 @@ class App extends Component {
         <div>
           {this.props.Session.loggedIn ? <Navigation/> : null}
           <Switch>
-            <Route exact path="/" render={ () => this.props.Session.loggedIn ? <MainView/> : <LoginView/> }/>
-            <Route path="/home" render={ () => this.props.Session.loggedIn ? <MainView/> : <LoginView/> }/>
+            <Route exact path="/" render={ () => this.props.Session.loggedIn ? <DashboardView/> : <LoginView/> }/>
             <Route path="/refuels" render={ () => this.props.Session.loggedIn ? <RefuelsView/> : <LoginView/> }/>
             <Route path="/addrefuel" render={ () => this.props.Session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
             <Route path="/about" render={ () => this.props.Session.loggedIn ? <AboutView/> : <LoginView/> }/>

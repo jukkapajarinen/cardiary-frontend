@@ -6,6 +6,7 @@ import Settings from './reducers/SettingsReducer';
 import AddRefuel from './reducers/AddRefuelReducer';
 import Refuels from './reducers/RefuelsReducer';
 import Profile from './reducers/ProfileReducer';
+import Dashboard from './reducers/DashboardReducer';
 
 export default createStore(
     combineReducers({
@@ -13,7 +14,8 @@ export default createStore(
       Settings,
       AddRefuel,
       Refuels,
-      Profile
+      Profile,
+      Dashboard
     }),
     {},
     applyMiddleware(createLogger(), thunk)
