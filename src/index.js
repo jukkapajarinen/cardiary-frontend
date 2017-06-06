@@ -5,6 +5,7 @@ import App from './containers/App';
 import store from './store';
 import 'bootswatch/paper/bootstrap.min.css';
 import './styles.css';
+import 'c3/c3.css';
 
 render(
   <Provider store={ store }>

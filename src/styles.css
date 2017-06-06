@@ -1,4 +1,6 @@
+nav.navbar .navbar-header .navbar-toggle .icon-bar { background-color: #b2dbfb; }
 nav.navbar .nav.navbar-right .dropdown.open #userDropdown+.dropdown-menu { min-width: 95px; }
 nav.navbar .nav.navbar-nav>li.active>a { background-color: transparent !important; }
 .panel>.panel-heading>.panel-title { font-size: 13px !important;  }
 .panel>.panel-heading>.panel-title .dropdown.btn-group>button { padding: 0 12px; }
+.panel-group>.panel>.panel-heading>.panel-title>a { cursor: pointer; }
