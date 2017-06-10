@@ -26,17 +26,17 @@ class Navigation extends Component{
         </Navbar.Header>
         <Navbar.Collapse>
           <Nav>
-            <LinkContainer to="/"><NavItem eventKey={ 1 }>Home</NavItem></LinkContainer>
-            <LinkContainer to="/refuels"><NavItem eventKey={ 2 }>Refuels</NavItem></LinkContainer>
-            <LinkContainer to="/addrefuel"><NavItem eventKey={ 3 }>Add Refuel</NavItem></LinkContainer>
-            <LinkContainer to="/cars"><NavItem eventKey={ 4 }>Cars</NavItem></LinkContainer>
-            <LinkContainer to="/addcar"><NavItem eventKey={ 5 }>Add Car</NavItem></LinkContainer>
-            <LinkContainer to="/about"><NavItem eventKey={ 6 }>About</NavItem></LinkContainer>
-            <LinkContainer to="/settings"><NavItem eventKey={ 7 }>Settings</NavItem></LinkContainer>
+            <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/' }><NavItem eventKey={ 1 }>Home</NavItem></LinkContainer>
+            <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/refuels' }><NavItem eventKey={ 2 }>Refuels</NavItem></LinkContainer>
+            <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/addrefuel' }><NavItem eventKey={ 3 }>Add Refuel</NavItem></LinkContainer>
+            <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/cars' }><NavItem eventKey={ 4 }>Cars</NavItem></LinkContainer>
+            <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/addcar' }><NavItem eventKey={ 5 }>Add Car</NavItem></LinkContainer>
+            <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/about' }><NavItem eventKey={ 6 }>About</NavItem></LinkContainer>
+            <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/settings' }><NavItem eventKey={ 7 }>Settings</NavItem></LinkContainer>
           </Nav>
           <Nav pullRight>
             <NavDropdown eventKey={ 8 } title={ <span><Glyphicon glyph='user' /> {this.props.Profile.username}</span> } id="userDropdown">
-              <LinkContainer to="/profile"><NavItem eventKey={ 8.1 }>Profile</NavItem></LinkContainer>
+              <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/profile' }><NavItem eventKey={ 8.1 }>Profile</NavItem></LinkContainer>
               <NavItem eventKey={ 8.2 } onSelect={ this.handleLogout }>Logout</NavItem>
             </NavDropdown>
           </Nav>

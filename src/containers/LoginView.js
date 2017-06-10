@@ -58,7 +58,7 @@ class LoginView extends Component {
                   </InputGroup>
                 </FormGroup>
                 <FormGroup>
-                  <Link to="/forgot">Forgot your password?</Link>
+                  <Link to={ process.env.REACT_APP_PATH_PREFIX + '/forgot' }>Forgot your password?</Link>
                 </FormGroup>
                 <FormGroup>
                   <Button type="submit" bsStyle="default" block>Login</Button>

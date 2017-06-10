@@ -83,8 +83,8 @@ class CarsView extends Component {
                     <td>{car.priority}</td>
                     <td className="text-right">
                       <ButtonGroup>
-                        <Button onClick={ () => this.handlePriorityUp(car.priority, parseInt(car.priority)-1) }><Glyphicon glyph="menu-up"/></Button>
-                        <Button onClick={ () => this.handlePriorityDown(car.priority, parseInt(car.priority)+1) } id={ car.id }><Glyphicon glyph="menu-down"/></Button>
+                        <Button onClick={ () => this.handlePriorityUp(car.priority, parseInt(car.priority, 10)-1) }><Glyphicon glyph="menu-up"/></Button>
+                        <Button onClick={ () => this.handlePriorityDown(car.priority, parseInt(car.priority, 10)+1) } id={ car.id }><Glyphicon glyph="menu-down"/></Button>
                       </ButtonGroup>
                     </td>
                   </tr>

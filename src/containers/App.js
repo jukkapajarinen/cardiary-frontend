@@ -54,16 +54,16 @@ class App extends Component {
         <div>
           {this.props.Session.loggedIn ? <Navigation/> : null}
           <Switch>
-            <Route path="/" render={ () => this.props.Session.loggedIn ? <DashboardView/> : <LoginView/> }/>
-            <Route path="/refuels" render={ () => this.props.Session.loggedIn ? <RefuelsView/> : <LoginView/> }/>
-            <Route path="/addrefuel" render={ () => this.props.Session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
-            <Route path="/cars" render={ () => this.props.Session.loggedIn ? <CarsView/> : <LoginView/> }/>
-            <Route path="/addcar" render={ () => this.props.Session.loggedIn ? <AddCarView/> : <LoginView/> }/>
-            <Route path="/about" render={ () => this.props.Session.loggedIn ? <AboutView/> : <LoginView/> }/>
-            <Route path="/settings" render={ () => this.props.Session.loggedIn ? <SettingsView/> : <LoginView/> }/>
-            <Route path="/profile" render={ () => this.props.Session.loggedIn ? <ProfileView/> : <LoginView/> }/>
-            <Route path="/forgot" render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <ForgotView/> }/>
-            <Route path="/passwordreset" render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <ResetPasswordView/> }/>
+            <Route exact path={ process.env.REACT_APP_PATH_PREFIX + '/' } render={ () => this.props.Session.loggedIn ? <DashboardView/> : <LoginView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/refuels' } render={ () => this.props.Session.loggedIn ? <RefuelsView/> : <LoginView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/addrefuel' } render={ () => this.props.Session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/cars' } render={ () => this.props.Session.loggedIn ? <CarsView/> : <LoginView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/addcar' } render={ () => this.props.Session.loggedIn ? <AddCarView/> : <LoginView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/about' } render={ () => this.props.Session.loggedIn ? <AboutView/> : <LoginView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/settings' } render={ () => this.props.Session.loggedIn ? <SettingsView/> : <LoginView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/profile' } render={ () => this.props.Session.loggedIn ? <ProfileView/> : <LoginView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/forgot' } render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <ForgotView/> }/>
+            <Route path={ process.env.REACT_APP_PATH_PREFIX + '/passwordreset' } render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <ResetPasswordView/> }/>
             <Route render={ () => <NotFoundView/> }/>
           </Switch>
         </div>

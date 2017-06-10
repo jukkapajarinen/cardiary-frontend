@@ -11,6 +11,7 @@ import {updateCars as UpdateCarsAction} from '../actions/RefuelsActions';
 class RefuelsView extends Component {
   constructor(props) {
     super(props);
+    console.log(location);
     this.handlePagination = this.handlePagination.bind(this);
     this.getRefuelsFromBackend(this.props.Refuels.activePage, this.props.Refuels.pageSize);
     axios({
