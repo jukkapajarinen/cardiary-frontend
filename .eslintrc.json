@@ -22,6 +22,9 @@
     "plugins": [
         "react"
     ],
+    "globals": {
+        "process": false
+    },
     "rules": {
         "indent": ["error", 2],
         "linebreak-style": ["error", "unix"],
