@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
-import {FormGroup, ControlLabel, FormControl, Button} from 'react-bootstrap';
+import {FormGroup, ControlLabel, FormControl, Button, Alert} from 'react-bootstrap';
 import axios from '../axios_config';
 import {updateForm as UpdateFormAction} from '../actions/SettingsActions';
 import {updateChoices as UpdateChoicesAction} from '../actions/SettingsActions';
@@ -12,6 +12,7 @@ class SettingsView extends Component {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleOnChange = this.handleOnChange.bind(this);
+    this.state = {alertVisible: false};
     axios({
       method: 'options',
       url: '/my-options/'
@@ -48,7 +49,9 @@ class SettingsView extends Component {
         'volume_unit': e.target.volumeUnit.value,
         'distance_unit': e.target.distanceUnit.value
       }
-    });
+    })
+    .then(() => this.setState( {alertVisible: true} ))
+    .catch(() => {});
   }
 
   handleOnChange(e) {
@@ -70,6 +73,10 @@ class SettingsView extends Component {
         <Row>
           <Col sm={ 12 }>
             <Panel header="General settings">
+              {this.state.alertVisible ?
+                <Alert bsStyle="success" onDismiss={() => this.setState({alertVisible: false})}>
+                  <strong>Well done: </strong> Save successful.
+                </Alert> : null}
               <form onSubmit={ this.handleSubmit }>
                 <FormGroup>
                   <ControlLabel>Consumption unit</ControlLabel>
