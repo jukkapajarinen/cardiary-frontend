@@ -20,7 +20,7 @@ class Navigation extends Component{
       <Navbar inverse collapseOnSelect>
         <Navbar.Header>
           <Navbar.Brand>
-            <LinkContainer to="/"><a>Cardiary</a></LinkContainer>
+            <LinkContainer to={ process.env.REACT_APP_PATH_PREFIX + '/' }><a>Cardiary</a></LinkContainer>
           </Navbar.Brand>
           <Navbar.Toggle/>
         </Navbar.Header>
