@@ -87,7 +87,7 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(UpdateProfileDataAction(username, email));
     }
   };
-}
+};
 
 App.propTypes = {
   Session: PropTypes.object.isRequired,

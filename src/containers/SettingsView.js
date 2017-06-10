@@ -74,7 +74,7 @@ class SettingsView extends Component {
           <Col sm={ 12 }>
             <Panel header="General settings">
               {this.state.alertVisible ?
-                <Alert bsStyle="success" onDismiss={() => this.setState({alertVisible: false})}>
+                <Alert bsStyle="success" onDismiss={ () => this.setState({alertVisible: false}) }>
                   <strong>Well done: </strong> Save successful.
                 </Alert> : null}
               <form onSubmit={ this.handleSubmit }>
@@ -82,7 +82,7 @@ class SettingsView extends Component {
                   <ControlLabel>Consumption unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose consumption unit" name="consumptionUnit" value={ this.props.Settings.consumptionUnit }>
                     {this.props.Settings.consumptionUnitChoices.map((consumptionUnit, id) => (
-                    <option key={ id } value={consumptionUnit.value}>{consumptionUnit.display_name}</option>
+                      <option key={ id } value={ consumptionUnit.value }>{consumptionUnit.display_name}</option>
                     ))}
                   </FormControl>
                 </FormGroup>
@@ -94,7 +94,7 @@ class SettingsView extends Component {
                   <ControlLabel>Volume unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose volume unit" name="volumeUnit" value={ this.props.Settings.volumeUnit }>
                     {this.props.Settings.volumeUnitChoices.map((volumeUnit, id) => (
-                      <option key={ id } value={volumeUnit.value}>{volumeUnit.display_name}</option>
+                      <option key={ id } value={ volumeUnit.value }>{volumeUnit.display_name}</option>
                     ))}
                   </FormControl>
                 </FormGroup>
@@ -102,7 +102,7 @@ class SettingsView extends Component {
                   <ControlLabel>Distance unit</ControlLabel>
                   <FormControl onChange={ this.handleOnChange } componentClass="select" placeholder="Choose distance unit" name="distanceUnit" value={ this.props.Settings.distanceUnit }>
                     {this.props.Settings.distanceUnitChoices.map((distanceUnit, id) => (
-                      <option key={ id } value={distanceUnit.value}>{distanceUnit.display_name}</option>
+                      <option key={ id } value={ distanceUnit.value }>{distanceUnit.display_name}</option>
                     ))}
                   </FormControl>
                 </FormGroup>

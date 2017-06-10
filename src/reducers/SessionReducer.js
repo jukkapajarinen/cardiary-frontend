@@ -20,7 +20,7 @@ const SessionReducer = (state = initialState, action) => {
     return {
       ...state,
       loggedIn: true
-    }
+    };
   default:
     return state;
   }

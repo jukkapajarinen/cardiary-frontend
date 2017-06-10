@@ -26,7 +26,8 @@ class CarsView extends Component {
       url: '/my-cars/',
       params: {
         'page': page,
-        'page_size': pageSize
+        'page_size': pageSize,
+        'o': 'priority'
       }
     })
     .then(response => {
@@ -35,12 +36,28 @@ class CarsView extends Component {
     });
   }
 
-  handlePriorityUp(priority) {
-    console.log(priority);
+  handlePriorityUp(priority1, priority2) {
+    this.props.Cars.carsArray.forEach((car) => {
+      if (car.priority === priority1) {
+        console.log('Car1 was: ' + car.id);
+      }
+      if (car.priority === priority2) {
+        console.log('Car2 was: ' + car.id);
+      }
+    });
+    //this.getCarsFromBackend(this.props.Cars.activePage, this.props.Cars.pageSize);
   }
 
-  handlePriorityDown(priority) {
-    console.log(priority);
+  handlePriorityDown(priority1, priority2) {
+    this.props.Cars.carsArray.forEach((car) => {
+      if(car.priority === priority1) {
+        console.log('Car1 was: ' + car.id);
+      }
+      if(car.priority === priority2) {
+        console.log('Car2 was: ' + car.id);
+      }
+    });
+    //this.getCarsFromBackend(this.props.Cars.activePage, this.props.Cars.pageSize);
   }
 
   render() {
@@ -53,6 +70,8 @@ class CarsView extends Component {
               <thead>
                 <tr>
                   <th>Name</th>
+                  <th>ID</th>
+                  <th>Priority</th>
                   <th className="text-right">Priority</th>
                 </tr>
               </thead>
@@ -60,10 +79,12 @@ class CarsView extends Component {
                 {this.props.Cars.carsArray.map((car) => (
                   <tr key={ car.id }>
                     <td>{car.name}</td>
+                    <td>{car.id}</td>
+                    <td>{car.priority}</td>
                     <td className="text-right">
                       <ButtonGroup>
-                        <Button onClick={() => this.handlePriorityUp(car.priority)}><Glyphicon glyph="menu-up"/></Button>
-                        <Button onClick={() => this.handlePriorityDown(car.priority)} id={ car.id }><Glyphicon glyph="menu-down"/></Button>
+                        <Button onClick={ () => this.handlePriorityUp(car.priority, parseInt(car.priority)-1) }><Glyphicon glyph="menu-up"/></Button>
+                        <Button onClick={ () => this.handlePriorityDown(car.priority, parseInt(car.priority)+1) } id={ car.id }><Glyphicon glyph="menu-down"/></Button>
                       </ButtonGroup>
                     </td>
                   </tr>

@@ -25,11 +25,11 @@ class ProfileView extends Component {
               <form onSubmit={ this.handleSubmit }>
                 <FormGroup>
                   <ControlLabel>Username</ControlLabel>
-                  <FormControl type="text" placeholder="Username" name="username" value={this.props.Profile.username} disabled/>
+                  <FormControl type="text" placeholder="Username" name="username" value={ this.props.Profile.username } disabled/>
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Email</ControlLabel>
-                  <FormControl type="email" placeholder="Enter your email" name="email" value={this.props.Profile.email}/>
+                  <FormControl type="email" placeholder="Enter your email" name="email" value={ this.props.Profile.email }/>
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Current password</ControlLabel>

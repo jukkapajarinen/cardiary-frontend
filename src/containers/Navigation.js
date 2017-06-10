@@ -35,7 +35,7 @@ class Navigation extends Component{
             <LinkContainer to="/settings"><NavItem eventKey={ 7 }>Settings</NavItem></LinkContainer>
           </Nav>
           <Nav pullRight>
-            <NavDropdown eventKey={ 8 } title={<span><Glyphicon glyph='user' /> {this.props.Profile.username}</span>} id="userDropdown">
+            <NavDropdown eventKey={ 8 } title={ <span><Glyphicon glyph='user' /> {this.props.Profile.username}</span> } id="userDropdown">
               <LinkContainer to="/profile"><NavItem eventKey={ 8.1 }>Profile</NavItem></LinkContainer>
               <NavItem eventKey={ 8.2 } onSelect={ this.handleLogout }>Logout</NavItem>
             </NavDropdown>

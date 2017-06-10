@@ -44,13 +44,13 @@ class DashboardView extends Component {
       <Grid>
         <Row>
           <Col sm={ 6 }>
-            <Panel header={<div>Statistics <span className="pull-right">
-              <DropdownButton title={this.props.Dashboard.statsSelected} id="statsDropdown" onSelect={this.handleStatsDropsDown}>
-                {this.props.Dashboard.statsChoices.map((option, i) => (
+            <Panel header={ <div>Statistics <span className="pull-right">
+              <DropdownButton title={ this.props.Dashboard.statsSelected } id="statsDropdown" onSelect={ this.handleStatsDropsDown }>
+                {this.props.Dashboard.statsChoices.map((option) => (
                   <MenuItem key={ option } eventKey={ option }>{option}</MenuItem>
                 ))}
               </DropdownButton>
-            </span></div>}>
+            </span></div> }>
               <ListGroup style={ {margin: '-16px'} }>
                 <ListGroupItem>Total refuels <Badge>{this.props.Dashboard.statsTotalRefuels}</Badge></ListGroupItem>
                 <ListGroupItem>Total price <Badge>{this.props.Dashboard.statsTotalPrice}</Badge></ListGroupItem>
@@ -62,10 +62,10 @@ class DashboardView extends Component {
           <Col sm={ 6 }>
             <Panel header="Graph">
               <C3Chart type="line" columns={
-                [
+              [
                   ['data1', 30, 200, 100, 400, 150, 250],
                   ['data2', 50, 20, 10, 40, 15, 25]
-                ]
+              ]
               }/>
             </Panel>
           </Col>

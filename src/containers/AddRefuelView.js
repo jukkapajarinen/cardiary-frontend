@@ -54,7 +54,7 @@ class AddRefuelView extends Component {
           <Col xs={ 12 }>
             <Panel header="Enter refuel details">
               {this.state.alertVisible ?
-                <Alert bsStyle="success" onDismiss={() => this.setState({alertVisible: false})}>
+                <Alert bsStyle="success" onDismiss={ () => this.setState({alertVisible: false}) }>
                   <strong>Well done: </strong> Added new refuel successfully.
                 </Alert> : null}
               <form onSubmit={ this.handleSubmit }>
@@ -69,13 +69,13 @@ class AddRefuelView extends Component {
                   <FormControl onChange={ this.handleOnChange } type="date" placeholder="dd/mm/yyyy" name="date" value={ this.props.AddRefuel.date } />
                 </FormGroup>
                 <FormGroup>
-                  <FormControl onChange={ this.handleOnChange } type="number" placeholder={'Distance (' + this.props.Settings.distanceUnit + ')'} name="distance" value={ this.props.AddRefuel.distance } />
+                  <FormControl onChange={ this.handleOnChange } type="number" placeholder={ 'Distance (' + this.props.Settings.distanceUnit + ')' } name="distance" value={ this.props.AddRefuel.distance } />
                 </FormGroup>
                 <FormGroup>
-                  <FormControl onChange={ this.handleOnChange } type="number" placeholder={'Volume (' + this.props.Settings.volumeUnit + ')'} name="volume" value={ this.props.AddRefuel.volume } />
+                  <FormControl onChange={ this.handleOnChange } type="number" placeholder={ 'Volume (' + this.props.Settings.volumeUnit + ')' } name="volume" value={ this.props.AddRefuel.volume } />
                 </FormGroup>
                 <FormGroup>
-                  <FormControl onChange={ this.handleOnChange } type="number" placeholder={'Price (' + this.props.Settings.currencyUnit + ')'} name="price" value={ this.props.AddRefuel.price } />
+                  <FormControl onChange={ this.handleOnChange } type="number" placeholder={ 'Price (' + this.props.Settings.currencyUnit + ')' } name="price" value={ this.props.AddRefuel.price } />
                 </FormGroup>
                 <FormGroup>
                   <FormControl onChange={ this.handleOnChange } componentClass="textarea" placeholder="Notes (optional)" style={ {resize: 'none'} } name="notes" value={ this.props.AddRefuel.notes }/>
@@ -111,7 +111,8 @@ const mapDispatchToProps = (dispatch) => {
 AddRefuelView.propTypes = {
   UpdateCarsAction: PropTypes.func.isRequired,
   UpdateFormAction: PropTypes.func.isRequired,
-  AddRefuel: PropTypes.object.isRequired
+  AddRefuel: PropTypes.object.isRequired,
+  Settings: PropTypes.object.isRequired
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(AddRefuelView);

@@ -41,7 +41,7 @@ class LoginView extends Component {
           <Col xs={ 12 }>
             <Panel header="Cardiary" bsStyle="primary" style={ {marginTop: 60} }>
               {this.state.alertVisible ?
-                <Alert bsStyle="danger" onDismiss={() => this.setState({alertVisible: false})}>
+                <Alert bsStyle="danger" onDismiss={ () => this.setState({alertVisible: false}) }>
                   <strong>Oh Snap:</strong> Incorrect login credentials.
                 </Alert> : null}
               <form onSubmit={ this.handleSubmit }>
