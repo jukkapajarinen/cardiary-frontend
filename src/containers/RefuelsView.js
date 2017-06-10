@@ -6,12 +6,24 @@ import {Table, Pagination} from 'react-bootstrap';
 import axios from '../axios_config';
 import {updateData as UpdateDataAction} from '../actions/RefuelsActions';
 import {updatePagination as UpdatePaginationAction} from '../actions/RefuelsActions';
+import {updateCars as UpdateCarsAction} from '../actions/RefuelsActions';
 
 class RefuelsView extends Component {
   constructor(props) {
     super(props);
     this.handlePagination = this.handlePagination.bind(this);
     this.getRefuelsFromBackend(this.props.Refuels.activePage, this.props.Refuels.pageSize);
+    axios({
+      method: 'get',
+      url: '/my-cars/'
+    })
+    .then(response => {
+      let fixedCarsArray = [];
+      response.data.results.map((car) => {
+        fixedCarsArray[car.id] = car.name;
+      });
+      this.props.UpdateCarsAction(fixedCarsArray);
+    });
   }
 
   handlePagination(eventKey) {
@@ -35,6 +47,7 @@ class RefuelsView extends Component {
   }
 
   render() {
+    console.log(this.props.Refuels.carsArray);
     return (
       <Grid>
         <Row>
@@ -53,10 +66,10 @@ class RefuelsView extends Component {
                 {this.props.Refuels.refuelsArray.map((refuel) => (
                   <tr key={ refuel.id }>
                     <td>{refuel.date}</td>
-                    <td>{refuel.car}</td>
-                    <td>{refuel.distance}</td>
-                    <td>{refuel.volume}</td>
-                    <td>{refuel.price}</td>
+                    <td>{this.props.Refuels.carsArray.length > 0 ? this.props.Refuels.carsArray[refuel.car]: refuel.car}</td>
+                    <td>{parseFloat(parseFloat(refuel.distance).toFixed(2)) + ' ' + this.props.Settings.distanceUnit}</td>
+                    <td>{parseFloat(parseFloat(refuel.volume).toFixed(2).toString()) + ' ' + this.props.Settings.volumeUnit}</td>
+                    <td>{parseFloat(parseFloat(refuel.price).toFixed(2).toString()) + ' ' + this.props.Settings.currencyUnit}</td>
                   </tr>
               ))}
               </tbody>
@@ -73,7 +86,8 @@ class RefuelsView extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    Refuels: state.Refuels
+    Refuels: state.Refuels,
+    Settings: state.Settings
   };
 };
 
@@ -84,12 +98,17 @@ const mapDispatchToProps = (dispatch) => {
     },
     UpdatePaginationAction: (numPages, activePage) => {
       dispatch(UpdatePaginationAction(numPages, activePage));
+    },
+    UpdateCarsAction: (carsObject) => {
+      dispatch(UpdateCarsAction(carsObject));
     }
   };
 };
 
 RefuelsView.propTypes = {
   Refuels: PropTypes.object.isRequired,
+  Settings: PropTypes.object.isRequired,
+  UpdateCarsAction: PropTypes.func.isRequired,
   UpdateDataAction: PropTypes.func.isRequired,
   UpdatePaginationAction: PropTypes.func.isRequired
 

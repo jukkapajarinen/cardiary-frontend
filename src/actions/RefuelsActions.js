@@ -14,5 +14,12 @@ export function updatePagination(numPages, activePage) {
       'numPages': numPages,
       'activePage': activePage
     }
-  }
+  };
+}
+
+export function updateCars(carsArray) {
+  return {
+    type: 'REFUELS_UPDATE_CARS',
+    payload: {'carsArray': carsArray}
+  };
 }
