@@ -10,6 +10,8 @@ import LoginView from './LoginView';
 import SettingsView from './SettingsView';
 import RefuelsView from './RefuelsView';
 import AddRefuelView from './AddRefuelView';
+import CarsView from './CarsView';
+import AddCarView from './AddCarView';
 import ProfileView from './ProfileView';
 import ForgotView from './ForgotView';
 import ResetPasswordView from './ResetPasswordView';
@@ -55,6 +57,8 @@ class App extends Component {
             <Route exact path="/" render={ () => this.props.Session.loggedIn ? <DashboardView/> : <LoginView/> }/>
             <Route path="/refuels" render={ () => this.props.Session.loggedIn ? <RefuelsView/> : <LoginView/> }/>
             <Route path="/addrefuel" render={ () => this.props.Session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
+            <Route path="/cars" render={ () => this.props.Session.loggedIn ? <CarsView/> : <LoginView/> }/>
+            <Route path="/addcar" render={ () => this.props.Session.loggedIn ? <AddCarView/> : <LoginView/> }/>
             <Route path="/about" render={ () => this.props.Session.loggedIn ? <AboutView/> : <LoginView/> }/>
             <Route path="/settings" render={ () => this.props.Session.loggedIn ? <SettingsView/> : <LoginView/> }/>
             <Route path="/profile" render={ () => this.props.Session.loggedIn ? <ProfileView/> : <LoginView/> }/>

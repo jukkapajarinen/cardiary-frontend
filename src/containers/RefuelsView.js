@@ -47,7 +47,6 @@ class RefuelsView extends Component {
   }
 
   render() {
-    console.log(this.props.Refuels.carsArray);
     return (
       <Grid>
         <Row>
