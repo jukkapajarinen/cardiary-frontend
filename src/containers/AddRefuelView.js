@@ -30,9 +30,9 @@ class AddRefuelView extends Component {
       data: {
         'car': e.target.car.value,
         'date': e.target.date.value,
-        'distance': e.target.distance.value,
-        'volume': e.target.volume.value,
-        'price': e.target.price.value,
+        'distance': e.target.distance.value.replace(',', '.'),
+        'volume': e.target.volume.value.replace(',', '.'),
+        'price': e.target.price.value.replace(',', '.'),
         'notes': e.target.notes.value
       }
     })
