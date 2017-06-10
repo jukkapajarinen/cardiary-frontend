@@ -11,6 +11,8 @@ import SettingsView from './SettingsView';
 import RefuelsView from './RefuelsView';
 import AddRefuelView from './AddRefuelView';
 import ProfileView from './ProfileView';
+import ForgotView from './ForgotView';
+import ResetPasswordView from './ResetPasswordView';
 import axios from '../axios_config';
 import {tokenLogin as SessionTokenLogin} from '../actions/SessionActions';
 import {updateData as UpdateProfileDataAction} from '../actions/ProfileActions';
@@ -56,6 +58,8 @@ class App extends Component {
             <Route path="/about" render={ () => this.props.Session.loggedIn ? <AboutView/> : <LoginView/> }/>
             <Route path="/settings" render={ () => this.props.Session.loggedIn ? <SettingsView/> : <LoginView/> }/>
             <Route path="/profile" render={ () => this.props.Session.loggedIn ? <ProfileView/> : <LoginView/> }/>
+            <Route path="/forgot" render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <ForgotView/> }/>
+            <Route path="/passwordreset" render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <ResetPasswordView/> }/>
             <Route render={ () => <NotFoundView/> }/>
           </Switch>
         </div>

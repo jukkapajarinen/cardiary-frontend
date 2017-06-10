@@ -1,6 +1,6 @@
 const initialState = {
   refuelsArray: [],
-  pageSize: 2,
+  pageSize: 10,
   numPages: 1,
   activePage: 1
 };

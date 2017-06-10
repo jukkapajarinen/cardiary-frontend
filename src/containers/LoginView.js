@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
+import {Link} from 'react-router-dom';
 import {Grid, Row, Col, Panel} from 'react-bootstrap';
-import {FormGroup, InputGroup, Glyphicon, FormControl, Button} from 'react-bootstrap';
+import {FormGroup, InputGroup, Glyphicon, FormControl, Button, Alert} from 'react-bootstrap';
 import {login as SessionLoginAction} from '../actions/SessionActions';
 import axios from '../axios_config';
 
@@ -10,6 +11,7 @@ class LoginView extends Component {
   constructor(props) {
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.state = {alertVisible: false};
   }
 
   handleSubmit(e) {
@@ -26,7 +28,10 @@ class LoginView extends Component {
       let token = response.data.token;
       this.props.SessionLoginAction(token);
     })
-    .catch(() => { localStorage.removeItem('jwt_token'); });
+    .catch(() => {
+      localStorage.removeItem('jwt_token');
+      this.setState( {alertVisible: true} );
+    });
   }
 
   render() {
@@ -35,6 +40,10 @@ class LoginView extends Component {
         <Row>
           <Col xs={ 12 }>
             <Panel header="Cardiary" bsStyle="primary" style={ {marginTop: 60} }>
+              {this.state.alertVisible ?
+                <Alert bsStyle="danger" onDismiss={() => this.setState({alertVisible: false})}>
+                  <strong>Oh Snap:</strong> Incorrect login credentials.
+                </Alert> : null}
               <form onSubmit={ this.handleSubmit }>
                 <FormGroup>
                   <InputGroup>
@@ -48,7 +57,12 @@ class LoginView extends Component {
                     <FormControl type="password" name="password" placeholder="Password"/>
                   </InputGroup>
                 </FormGroup>
-                <Button type="submit" bsStyle="default" block>Login</Button>
+                <FormGroup>
+                  <Link to="/forgot">Forgot your password?</Link>
+                </FormGroup>
+                <FormGroup>
+                  <Button type="submit" bsStyle="default" block>Login</Button>
+                </FormGroup>
               </form>
             </Panel>
           </Col>

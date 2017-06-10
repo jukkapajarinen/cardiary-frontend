@@ -81,7 +81,7 @@ class SettingsView extends Component {
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Currency</ControlLabel>
-                  <FormControl onChange={ this.handleOnChange } type="text" placeholder="€" name="currencyUnit" value={ this.props.Settings.currencyUnit }/>
+                  <FormControl onChange={ this.handleOnChange } type="text" placeholder="Enter currency unit" name="currencyUnit" value={ this.props.Settings.currencyUnit }/>
                 </FormGroup>
                 <FormGroup>
                   <ControlLabel>Volume unit</ControlLabel>
