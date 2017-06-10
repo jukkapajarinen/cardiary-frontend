@@ -54,7 +54,7 @@ class App extends Component {
         <div>
           {this.props.Session.loggedIn ? <Navigation/> : null}
           <Switch>
-            <Route exact path="/" render={ () => this.props.Session.loggedIn ? <DashboardView/> : <LoginView/> }/>
+            <Route path="/" render={ () => this.props.Session.loggedIn ? <DashboardView/> : <LoginView/> }/>
             <Route path="/refuels" render={ () => this.props.Session.loggedIn ? <RefuelsView/> : <LoginView/> }/>
             <Route path="/addrefuel" render={ () => this.props.Session.loggedIn ? <AddRefuelView/> : <LoginView/> }/>
             <Route path="/cars" render={ () => this.props.Session.loggedIn ? <CarsView/> : <LoginView/> }/>
