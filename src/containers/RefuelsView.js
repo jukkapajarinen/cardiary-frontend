@@ -19,7 +19,7 @@ class RefuelsView extends Component {
     })
     .then(response => {
       let fixedCarsArray = [];
-      response.data.results.map((car) => {
+      response.data.results.forEach((car) => {
         fixedCarsArray[car.id] = car.name;
       });
       this.props.UpdateCarsAction(fixedCarsArray);
