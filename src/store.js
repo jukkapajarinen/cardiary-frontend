@@ -8,6 +8,7 @@ import Refuels from './reducers/RefuelsReducer';
 import Profile from './reducers/ProfileReducer';
 import Dashboard from './reducers/DashboardReducer';
 import Cars from './reducers/CarsReducer';
+import AddCar from './reducers/AddCarReducer';
 
 export default createStore(
     combineReducers({
@@ -17,7 +18,8 @@ export default createStore(
       Refuels,
       Profile,
       Dashboard,
-      Cars
+      Cars,
+      AddCar
     }),
     {},
     applyMiddleware(createLogger(), thunk)
