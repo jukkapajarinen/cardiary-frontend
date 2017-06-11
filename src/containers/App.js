@@ -64,7 +64,7 @@ class App extends Component {
             <Route path={ process.env.REACT_APP_PATH_PREFIX + '/profile' } render={ () => this.props.Session.loggedIn ? <ProfileView/> : <LoginView/> }/>
             <Route path={ process.env.REACT_APP_PATH_PREFIX + '/forgot' } render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <ForgotView/> }/>
             <Route path={ process.env.REACT_APP_PATH_PREFIX + '/passwordreset' } render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <ResetPasswordView/> }/>
-            <Route render={ () => <NotFoundView/> }/>
+            <Route render={ () => this.props.Session.loggedIn ? <NotFoundView/> : <LoginView/> }/>
           </Switch>
         </div>
       </BrowserRouter>
