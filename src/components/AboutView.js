@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Grid, Row, Col, Accordion, Panel} from 'react-bootstrap';
+import {Grid, Row, Col, Panel} from 'react-bootstrap';
 
 export default class AboutView extends Component {
   render() {
@@ -7,23 +7,20 @@ export default class AboutView extends Component {
       <Grid>
         <Row>
           <Col xs={ 12 }>
-            <Accordion>
-              <Panel header="Home" eventKey="1">
-                <p>This view shows overall statistics of your driving expenses</p>
-              </Panel>
-              <Panel header="Refuels" eventKey="2">
-                <p>Here you can preview and manage all of your refuels</p>
-              </Panel>
-              <Panel header="Add Refuel" eventKey="3">
-                <p>Here you can add a new refuel</p>
-              </Panel>
-              <Panel header="About" eventKey="4">
-                <p>This view is the current information page about the features</p>
-              </Panel>
-              <Panel header="Settings" eventKey="5">
-                <p>Here you can manage your general and administrative settings</p>
-              </Panel>
-            </Accordion>
+            <Panel header="About this software">
+              <p>The purpose of the application is to provide the user with the opportunity to <strong>manage the travel log of their car costs, such as fuel consumption, fuel price and mileage</strong></p>
+              <p>User can view totals expenses and visualization, manage refuels, manager cars and modify user settings and profile information.</p>
+              <p>The project is co-produced by two Finnish Software Engineers and being fully <strong>open-sourced</strong> from the beginning. (<a href="https://opensource.org/licenses/MIT">MIT License</a>)</p>
+              <ul>
+                <li><a href="https://bitbucket.org/jukkapajarinen/">Jukka Pajarinen</a> <i>(front-end)</i></li>
+                <li><a href="https://bitbucket.org/Kazooiebombchu/">Kazooiebombchu</a> <i>(back-end)</i></li>
+              </ul>
+              <p><strong>Check out the source-code from Bitbucket.</strong></p>
+              <ul>
+                <li><a href="https://bitbucket.org/jukkapajarinen/cardiary-frontend">cardiary-frontend</a></li>
+                <li><a href="https://bitbucket.org/Kazooiebombchu/cardiary-backend">cardiary-backend</a></li>
+              </ul>
+            </Panel>
           </Col>
         </Row>
       </Grid>
