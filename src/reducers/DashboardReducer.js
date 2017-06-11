@@ -4,7 +4,8 @@ const initialState = {
   statsTotalRefuels: 0,
   statsTotalPrice: 0,
   statsTotalDistance: 0,
-  statsTotalVolume: 0
+  statsTotalVolume: 0,
+  c3ChartData: []
 };
 
 const DashboardReducer = (state = initialState, action) => {
@@ -22,6 +23,11 @@ const DashboardReducer = (state = initialState, action) => {
       statsTotalPrice: action.payload.statsTotalPrice,
       statsTotalDistance: action.payload.statsTotalDistance,
       statsTotalVolume: action.payload.statsTotalVolume
+    };
+  case 'GRAPH_UPDATE_C3CHART':
+    return {
+      ...state,
+      c3ChartData: action.payload.c3ChartData
     };
   default:
     return state;

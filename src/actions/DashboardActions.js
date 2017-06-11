@@ -17,3 +17,10 @@ export function updateStatsData(statsSelected, statsTotalRefuels, statsTotalPric
     }
   };
 }
+
+export function updateC3ChartData(c3ChartData) {
+  return {
+    type: 'GRAPH_UPDATE_C3CHART',
+    payload: {'c3ChartData': c3ChartData}
+  };
+}

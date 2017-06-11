@@ -2,8 +2,6 @@ import React, {Component} from 'react';
 import c3  from 'c3';
 import PropTypes from 'prop-types';
 
-//TODO: Fix blackness-bug with line charts
-
 export default class C3Chart extends Component {
   updateChart() {
     c3.generate({
@@ -11,7 +9,9 @@ export default class C3Chart extends Component {
       data: {
         columns: this.props.columns,
         type: this.props.type
-      }
+      },
+      axis: {x: this.props.xAxis},
+      grid: {y: {show:true}}
     });
   }
 
@@ -31,4 +31,5 @@ export default class C3Chart extends Component {
 C3Chart.propTypes = {
   columns: PropTypes.array.isRequired,
   type: PropTypes.string.isRequired,
+  xAxis: PropTypes.array.isRequired,
 };

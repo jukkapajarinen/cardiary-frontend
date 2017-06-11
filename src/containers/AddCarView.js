@@ -42,9 +42,9 @@ class AddCarView extends Component {
           <Col xs={ 12 }>
             <Panel header="Enter car details">
               {this.state.alertVisible ?
-                <Alert bsStyle={this.state.alertType} onDismiss={ () => this.setState({alertVisible: false, alertType: 'success'}) }>
+                <Alert bsStyle={ this.state.alertType } onDismiss={ () => this.setState({alertVisible: false, alertType: 'success'}) }>
                   {this.state.alertType === 'success' ? <span><strong>Well done: </strong> Added new car successfully.</span> :
-                    <span><strong>Oh Snap:</strong> Priority is already in use. Please enter next priority.</span>}
+                  <span><strong>Oh Snap:</strong> Priority is already in use. Please enter next priority.</span>}
                 </Alert> : null}
               <form onSubmit={ this.handleSubmit }>
                 <FormGroup>

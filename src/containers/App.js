@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Navigation from './Navigation';
 import AboutView from '../components/AboutView';
 import NotFoundView from '../components/NotFoundView';
-import DashboardView from './Dashboard';
+import DashboardView from './DashboardView';
 import LoginView from './LoginView';
 import SettingsView from './SettingsView';
 import RefuelsView from './RefuelsView';

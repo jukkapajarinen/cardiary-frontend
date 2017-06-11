@@ -8,6 +8,7 @@ import C3Chart from '../components/C3Chart';
 import axios from '../axios_config';
 import {updateStatsChoices as UpdateStatsChoicesAction} from '../actions/DashboardActions';
 import {updateStatsData as UpdateStatsDataAction} from '../actions/DashboardActions';
+import {updateC3ChartData as UpdateC3ChartDataAction} from '../actions/DashboardActions';
 
 class DashboardView extends Component {
   constructor(props) {
@@ -23,6 +24,24 @@ class DashboardView extends Component {
         response.data.total_distance,
         response.data.total_volume
       );
+    });
+    axios({method: 'get', url: '/my-refuels/'})
+    .then(response => {
+      let c3ChartDates = [];
+      response.data.results.forEach((refuel) => {c3ChartDates.indexOf(refuel.date) === -1 ? c3ChartDates.push(refuel.date) : null;});
+      let c3ChartCars = [];
+      response.data.results.forEach((refuel) => {c3ChartCars.indexOf(refuel.car_name) === -1 ? c3ChartCars.push(refuel.car_name) : null;});
+      let c3ChartData = [];
+      for(let i = 0; i < c3ChartCars.length; i++) {
+        let c3ChartRow = [c3ChartCars[i]];
+        for(let j = 1; j < c3ChartDates.length+1; j++ ) {
+          response.data.results.forEach((refuel) => {(refuel.car_name === c3ChartCars[i] && refuel.date === c3ChartDates[j] && c3ChartRow[j] === undefined) ? c3ChartRow.push(parseFloat(refuel.consumption)) : null;});
+          c3ChartRow[j] === undefined ? c3ChartRow.push(0) : null;
+        }
+        c3ChartData.push(c3ChartRow);
+      }
+      c3ChartData = [['x', ...c3ChartDates], ...c3ChartData];
+      this.props.UpdateC3ChartDataAction(c3ChartData);
     });
   }
 
@@ -60,13 +79,9 @@ class DashboardView extends Component {
             </Panel>
           </Col>
           <Col sm={ 6 }>
-            <Panel header="Graph">
-              <C3Chart type="line" columns={
-              [
-                  ['data1', 30, 200, 100, 400, 150, 250],
-                  ['data2', 50, 20, 10, 40, 15, 25]
-              ]
-              }/>
+            <Panel header="Consumption">
+              <C3Chart type="line" columns={ this.props.Dashboard.c3ChartData.length > 0 ? this.props.Dashboard.c3ChartData.slice(1) : ['wait', 0] }
+                       xAxis={ this.props.Dashboard.c3ChartData.length > 0 ? this.props.Dashboard.c3ChartData[0].slice(1) : ['wait'] }/>
             </Panel>
           </Col>
         </Row>
@@ -88,6 +103,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     UpdateStatsDataAction: (selected, totalRefuels, totalPrice, totalDistance, totalVolume) => {
       dispatch(UpdateStatsDataAction(selected, totalRefuels, totalPrice, totalDistance, totalVolume));
+    },
+    UpdateC3ChartDataAction: (c3Chartdata) => {
+      dispatch(UpdateC3ChartDataAction(c3Chartdata));
     }
   };
 };
@@ -95,6 +113,7 @@ const mapDispatchToProps = (dispatch) => {
 DashboardView.propTypes = {
   UpdateStatsChoicesAction: PropTypes.func.isRequired,
   UpdateStatsDataAction: PropTypes.func.isRequired,
+  UpdateC3ChartDataAction: PropTypes.func.isRequired,
   Dashboard: PropTypes.object.isRequired
 };
 
